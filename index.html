@@ -18,8 +18,8 @@
       </header>
 
       <form class="form" action="index.html" method="post">
-        <input id='input-title' class='input-title' type="text" name="input1" value="input1 test text">
-        <input id='input-body' class='input-body' type="text" name="input2" value="input2 test text">
+        <input id='input-title' class='input-title' type="text" name="input1" value="Title">
+        <input id='input-body' class='input-body' type="text" name="input2" value="Body">
         <button id="button-save" class="button-save" type="button" name="save">save</button>
       </form>
 
@@ -34,9 +34,22 @@
 
 
 
-    <article class="new-idea-article">
-      <h3 class='new-idea-header'></h3>
-      <p class='new-idea-body'></p>
+    <article id="new-idea-article" class="new-idea-article">
+      <section>
+        <h2 class='new-idea-header'>Example Idea 1</h2>
+        <img class="delete-image" src="assets/delete.svg" alt="">
+      </section>
+
+      <p class='new-idea-body'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra augue et risus tincidunt, id pellentesque risus maximus. </p>
+
+      <section class="new-idea-footer">
+        <!-- <section class="new-idea-footer-img"> -->
+          <img class="upvote-image" src="assets/upvote.svg" alt="">
+          <img class="downvote-image" src="assets/downvote.svg" alt="">
+        <!-- </section> -->
+
+        <h3 class="h3-footer">quality:</h3><h3>swill</h3>
+      </section>
     </article>
 
 
