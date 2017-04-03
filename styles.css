@@ -1,0 +1,92 @@
+h1 {font-size: 300%;}
+h2 {font-size: 275%;}
+h3 {font-size: 250%;}
+h4 {font-size: 225%;}
+h5 {font-size: 200%;}
+h6 {font-size: 175%;}
+p {}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #e5f3f2;
+  width: 100vw;
+}
+
+header, h1 {
+  font-family: 'Roboto Slab', serif;
+  margin-top: 10px;
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  font-size: 145%;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.h1-idea {
+  color: #00a79d;
+}
+.h1-box {
+  color: #6d6e71;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  border: 0;
+  padding: 0;
+}
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+input {
+  padding: 0;
+}
+.input-title {
+  justify-content: center;
+  height: 20px;
+  margin-top: 15px;
+  width: 100%;
+  border: 2px solid #D1D3D4;
+}
+.input-body {
+  height: 70px;
+  width: 100%;
+  margin-top: 10px;
+  border: 2px solid #D1D3D4;
+}
+.button-save {
+  height: 30px;
+  width: 100%;
+  margin: 12px 0 12px 0;
+  background: #00a79d;
+  color: white;
+  padding: 0;
+
+}
+
+/*=======================================
+>>>>>>>>  Main  <<<<<<<<
+========================================*/
+
+.main-wrapper {
+  display: flex;
+}
+
+/* need to rename? */
+.search {
+  display: flex;
+  justify-content: center;
+}
+.input-search {
+  border: 2px solid #D1D3D4;
+
+}
