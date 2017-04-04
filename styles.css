@@ -139,12 +139,45 @@ h3 {
   font-size: 83%;
   float:left
 }
-/*.new-idea-footer img {
-  float: left;
-}*/
+
 .delete-image {
-  float:right;
+  float: right;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  background-repeat: round;
+  background-image: url("assets/delete.svg")
 }
+.delete-image:hover{
+  background-image: url("assets/delete-hover.svg");
+}
+.upvote-image {
+  float: right;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  background-repeat: round;
+  background-image: url("assets/upvote.svg")
+}
+.upvote-image:hover{
+  background-image: url("assets/upvote-hover.svg");
+}
+.downvote-image {
+  float: right;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  background-repeat: round;
+  background-image: url("assets/downvote.svg")
+}
+.downvote-image:hover{
+  background-image: url("assets/downvote-hover.svg");
+}
+
+
 .new-idea-footer {
   margin-top: 18px;
   padding-bottom: 36px;
