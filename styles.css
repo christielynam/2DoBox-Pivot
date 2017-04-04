@@ -140,6 +140,17 @@ h3 {
   float:left
 }
 
+
+/*=======================================
+>>>>>>>>  images  <<<<<<<<
+========================================*/
+.upvote-image, .downvote-image {
+  float: left;
+}
+.downvote-image {
+  margin-left: 5px;
+}
+
 .delete-image {
   float: right;
   width: 20px;
@@ -161,9 +172,11 @@ h3 {
   background-repeat: round;
   background-image: url("assets/upvote.svg")
 }
-.upvote-image:hover{
+
+.upvote-image:hover {
   background-image: url("assets/upvote-hover.svg");
 }
+
 .downvote-image {
   float: right;
   width: 20px;
@@ -179,21 +192,18 @@ h3 {
 
 
 .new-idea-footer {
-  margin-top: 18px;
-  padding-bottom: 36px;
+  display: flex;
+  align-items: center;
+  margin: 12px 0 12px 0;
+}
+.title-container {
+  margin-top: 12px;
 }
 p {
   margin-top: 10px;
 }
-.upvote-image, .downvote-image {
-  float: left;
-}
-.downvote-image {
-  margin-left: 5px;
-}
-.upvote-image:hover {
-  background-image: url("assets/upvote-hover.svg");
-}
+
+
 .h3-footer {
   font-family: 'Roboto Slab', serif;
 
