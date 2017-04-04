@@ -7,17 +7,29 @@ $(document).ready(function(){
   });
 });
 
-$('button').on('click', function(){
-  var $getInput1= $('#input1').val()
-  var $getInput2= $('#input2').val()
-  console.log('input1= ' + $getInput1)
-  console.log('input2= ' + $getInput2)
+function IdeaCard(title, body) {
+  this.title = title;
+  this.body = body;
+}
 
-  // $('.idea-header').text($getInput1)
-  // $('.idea-body').text($getInput2)
-  $('.new-idea-article').prepend("<p>"+$getInput2+"</p>")
-  $('.new-idea-article').prepend("<h3>"+$getInput1+"</h3>")
-
-  var ideaClone = $('.new-idea-article').clone()
-
-})
+$(".button-save").on("click", function() {
+  console.log("it clicked")
+  var $title = $('#input-title').val();
+  console.log($title)
+  var $body = $("#input-body").val();
+  console.log($body)
+  var CardGrabber = new IdeaCard($title, $body);
+  $("#new-idea-article").prepend(`
+    <article id="new-idea-article" class="new-idea-article">
+    <section>
+    <h2 class='new-idea-header'>${$title}</h2>
+    <img class="delete-image" src="assets/delete.svg" alt="">
+    </section>
+    <p class='new-idea-body'>${$body}</p>
+    <section class="new-idea-footer">
+    <img class="upvote-image" src="assets/upvote.svg" alt="">
+    <img class="downvote-image" src="assets/downvote.svg" alt="">
+    <h3 class="h3-footer">quality:</h3><h3>swill</h3>
+    </section>
+    </article>
+`)});
