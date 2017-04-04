@@ -33,3 +33,8 @@ $(".button-save").on("click", function() {
     </section>
     </article>
 `)});
+
+$("#new-idea-article").on('click','.delete-image', function() {
+  console.log($('.delete-image').parent().parent());
+  $(this).parent().parent().remove('.new-idea-article');
+});
