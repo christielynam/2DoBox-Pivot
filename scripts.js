@@ -12,27 +12,35 @@ function IdeaCard(title, body) {
   this.body = body;
 }
 
+
+$('#input-title').on('click', function(){
+  $('#input-title').val(" ")
+})
+$('#input-body').on('click', function(){
+  $('#input-body').val(" ")
+})
+
 $(".button-save").on("click", function() {
   console.log("it clicked")
   var $title = $('#input-title').val();
   console.log($title)
   var $body = $("#input-body").val();
   console.log($body)
+
   var CardGrabber = new IdeaCard($title, $body);
   $("#new-idea-article").prepend(`
     <article id="new-idea-article" class="new-idea-article">
     <section>
     <h2 class='new-idea-header'>${$title}</h2>
-    <button class="delete-image" type="button" name="button"></button>
+    <img class="delete-image" src="assets/delete.svg" alt="">
     </section>
     <p class='new-idea-body'>${$body}</p>
     <section class="new-idea-footer">
-    <button class="upvote-image" type="button" name="button"></button>
-    <button class="downvote-image" type="button" name="button"></button>
+    <img class="upvote-image" src="assets/upvote.svg" alt="">
+    <img class="downvote-image" src="assets/downvote.svg" alt="">
     <h3 class="h3-footer">quality:</h3><h3>swill</h3>
     </section>
     </article>
-
     `);
   $('#input-title').val("Title")
   $('#input-body').val("Body")
