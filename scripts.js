@@ -12,12 +12,21 @@ function IdeaCard(title, body) {
   this.body = body;
 }
 
+
+$('#input-title').on('click', function(){
+  $('#input-title').val(" ")
+})
+$('#input-body').on('click', function(){
+  $('#input-body').val(" ")
+})
+
 $(".button-save").on("click", function() {
   console.log("it clicked")
   var $title = $('#input-title').val();
   console.log($title)
   var $body = $("#input-body").val();
   console.log($body)
+
   var CardGrabber = new IdeaCard($title, $body);
   $("#new-idea-article").prepend(`
     <article id="new-idea-article" class="new-idea-article">
@@ -32,7 +41,10 @@ $(".button-save").on("click", function() {
     <h3 class="h3-footer">quality:</h3><h3>swill</h3>
     </section>
     </article>
-`)});
+    `);
+  $('#input-title').val("Title")
+  $('#input-body').val("Body")
+})
 
 $("#new-idea-article").on('click','.delete-image', function() {
   console.log($('.delete-image').parent().parent());
