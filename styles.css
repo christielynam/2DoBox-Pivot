@@ -116,7 +116,8 @@ input {
 >>>>>>>>  Card  <<<<<<<<
 ========================================*/
 .new-idea-article {
-  margin: 17px;
+  margin: auto;
+  width: 90vw;
   border-bottom: 2px solid #D1D3D4;
 
 }
@@ -162,6 +163,6 @@ p {
 }
 .h3-footer {
   font-family: 'Roboto Slab', serif;
-  
+
   margin-left: 5px;
 }
