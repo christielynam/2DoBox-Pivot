@@ -87,7 +87,7 @@ function prepend(idea) {
 	    	<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
 	    </section>
-	      <input type="text" class='new-idea-body' value="${idea.body}" maxlenghth="200" size="225">
+	      <textarea rows="4" cols="50" class='new-idea-body' placeholder="Body" value="${idea.body}"></textarea>
 	    <section class="new-idea-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
