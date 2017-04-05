@@ -49,18 +49,18 @@ function storeObject(id, newObject) {
 }
 
 
+
 $("#new-idea-article").on("click", ".upvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
-	var objectQuality = grabObject(id).quality
+	var parshedQuality = grabObject(id).quality
 
 
-	if (objectQuality == "swill") {
+	if (parshedQuality == "swill") {
 		newObject.quality = "plausible"
-		$(this).siblings().last().text("plausible")
+		var setQuality = $(this).siblings().last().text("plausible")
 		storeObject(id, newObject)
-		
-	} else if (objectQuality == "plausible") {
+	} else if (parshedQuality == "plausible") {
 		newObject.quality = "genius"
 		$(this).siblings().last().text("genius")
 		storeObject(id, newObject)
