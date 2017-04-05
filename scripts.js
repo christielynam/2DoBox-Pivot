@@ -41,6 +41,20 @@ $(".button-save").on("click", function() {
 	sendToStorage(idea);
 })
 
+$("#new-idea-article").on("click", "#quality", function() {
+	var identifier = $(this).parent().parent().prop('id');
+  console.log(identifier)
+  var qualities = ["swill", "plausible", "genius"];
+  var index = 1;
+  $(this).replaceWith(qualities[index])
+
+  console.log(	$(this).remove("#quality"))
+
+  // $("#quality").prepend("<h3>"+qualities[index]+"</h3>")
+
+  console.log(qualities[index])
+})
+
 
 // trashcan delete
 $("#new-idea-article").on('click', '.delete-image', function() {
@@ -59,14 +73,14 @@ function prepend(idea) {
 	$("#new-idea-article").prepend(`
     <div id="${idea.id}" class="new-idea-article">
     <section>
-    <h2 class='new-idea-header'>${idea.title}</h2>
+    <input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
     <img class="delete-image" src="assets/delete.svg" alt="">
     </section>
-    <p class='new-idea-body'>${idea.body}</p>
+      <input type="text" class='new-idea-body' value="${idea.body}" maxlenghth="200" size="225">
     <section class="new-idea-footer">
     <img class="upvote-image" src="assets/upvote.svg" alt="">
     <img class="downvote-image" src="assets/downvote.svg" alt="">
-    <h3 class="h3-footer">quality:</h3><h3>${idea.quality}</h3>
+    <h3 class="h3-footer">quality:</h3><h3 id="quality">${idea.quality}</h3>
     </section>
     </div>
     `);

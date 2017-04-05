@@ -122,13 +122,14 @@ input {
 
 }
 
-h2 {
+h2, .new-idea-header {
   display: inline-block;
   font-family: 'Roboto Slab', serif;
   color: #6d6371;
   font-size: 12px;
   font-weight: 700;
   font-size: 19px;
+  border: 0;
 }
 img {
   /*display: inline-block;*/
