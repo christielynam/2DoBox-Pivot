@@ -39,20 +39,32 @@ $(".button-save").on("click", function() {
 	sendToStorage(idea);
 })
 
-$("#new-idea-article").on("click", ".upvote-image", function() {
-	id = $(this).parent().parent().prop('id');
+function grabObject(id) {
 	var parsedObject = JSON.parse(localStorage.getItem(id))
-	var objectQuality = parsedObject.quality
+	return parsedObject;
+}
+
+function storeObject(id, newObject) {
+	localStorage.setItem(id, JSON.stringify(newObject))
+}
+
+
+$("#new-idea-article").on("click", ".upvote-image", function() {
+	var id = $(this).parent().parent().prop('id');
+	var newObject = grabObject(id)
+	var objectQuality = grabObject(id).quality
+
 
 	if (objectQuality == "swill") {
-		parsedObject.quality = "plausible"
+		newObject.quality = "plausible"
 		$(this).siblings().last().text("plausible")
-		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
+		storeObject(id, newObject)
+		
 	} else if (objectQuality == "plausible") {
-		parsedObject.quality = "genius"
+		newObject.quality = "genius"
 		$(this).siblings().last().text("genius")
-		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
-		console.log(update)
+		storeObject(id, newObject)
+
 	}
 })
 
@@ -102,3 +114,11 @@ function prepend(idea) {
 function sendToStorage(idea) {
 	localStorage.setItem(idea.id, JSON.stringify(idea))
 }
+
+
+// $("#new-idea-article").on("input", function() {
+// 	console.log("This shit works")
+// 	var id = $(this).parent().parent().prop('id');
+//
+//
+// })
