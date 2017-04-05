@@ -33,6 +33,14 @@ body {
   flex-direction: column;
 }
 
+.new-idea-body {
+  resize: none;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  color:#D1D3D4;
+  font-size: 15px;
+}
+
 .h1-idea {
   color: #00a79d;
 }
