@@ -41,7 +41,6 @@ $(".button-save").on("click", function() {
 
 $("#new-idea-article").on("click", ".upvote-image", function() {
 	id = $(this).parent().parent().prop('id');
-	console.log("click id " + id)
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	var objectQuality = parsedObject.quality
 
@@ -64,28 +63,17 @@ $("#new-idea-article").on("click", ".downvote-image", function() {
 
 	if (objectQuality == "genius") {
 		parsedObject.quality = "plausible"
-		// $(this).siblings().last().remove()
-
 		$(this).siblings().last().text("plausible")
 		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
-		console.log(update)
-
 	} else if (objectQuality == "plausible") {
 		parsedObject.quality = "swill"
-		// $(this).siblings().last().remove()
 		$(this).siblings().last().text("swill")
 		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
-		console.log(update)
 	}
-
 })
 
 // trashcan delete
 $("#new-idea-article").on('click', '.delete-image', function() {
-	console.log("remove button check");
-	console.log($('.delete-image').parent().parent());
-	//debugger;
-	console.log('ID TO DELETE ' + $(this).parent().parent().prop('id'));
 
 	localStorage.removeItem($(this).parent().parent().prop('id'));
 	$(this).parent().parent().remove('.new-idea-article');
@@ -112,8 +100,5 @@ function prepend(idea) {
 }
 
 function sendToStorage(idea) {
-	// var storeTitle = $('#input-title').val();
-	// var storeBody = $("#input-body").val()
-	// var idea = new Idea(storeTitle, storeBody)
 	localStorage.setItem(idea.id, JSON.stringify(idea))
 }

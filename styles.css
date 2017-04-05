@@ -65,11 +65,11 @@ input {
 }
 .input-body {
   font-family: 'Open Sans', sans-serif;
+  color: #D1D3D4;
   height: 70px;
   width: 100%;
   margin-top: 10px;
   border: 2px solid #D1D3D4;
-  color: #D1D3D4;
   font-size: 15px;
   padding: 5px;
   padding-bottom: 42px;
