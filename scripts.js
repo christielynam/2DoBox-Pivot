@@ -59,7 +59,7 @@ $("#new-idea-article").on("click", ".upvote-image", function() {
 		newObject.quality = "plausible"
 		$(this).siblings().last().text("plausible")
 		storeObject(id, newObject)
-		
+
 	} else if (objectQuality == "plausible") {
 		newObject.quality = "genius"
 		$(this).siblings().last().text("genius")
@@ -70,17 +70,18 @@ $("#new-idea-article").on("click", ".upvote-image", function() {
 
 $("#new-idea-article").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	var objectQuality = parsedObject.quality
+	var newObject = grabObject(id)
+	var objectQuality = grabObject(id).quality
 
 	if (objectQuality == "genius") {
-		parsedObject.quality = "plausible"
+		newObject.quality = "plausible"
 		$(this).siblings().last().text("plausible")
-		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
+		storeObject(id, newObject)
+
 	} else if (objectQuality == "plausible") {
-		parsedObject.quality = "swill"
+		newObject.quality = "swill"
 		$(this).siblings().last().text("swill")
-		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
+		storeObject(id, newObject)
 	}
 })
 
