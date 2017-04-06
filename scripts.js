@@ -48,39 +48,42 @@ function storeObject(id, newObject) {
 	localStorage.setItem(id, JSON.stringify(newObject))
 }
 
-
+/*=======================================
+>>>>>>>>  on click do this  <<<<<<<<
+========================================*/
 
 $("#new-idea-article").on("click", ".upvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
 
-
 	if (parshedQuality == "swill") {
 		newObject.quality = "plausible"
-		var setQuality = $(this).siblings().last().text("plausible")
+		$(this).siblings().last().text("plausible")
 		storeObject(id, newObject)
+
 	} else if (parshedQuality == "plausible") {
 		newObject.quality = "genius"
 		$(this).siblings().last().text("genius")
 		storeObject(id, newObject)
-
 	}
 })
 
 $("#new-idea-article").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	var objectQuality = parsedObject.quality
+	var newObject = grabObject(id)
+	console.log("newobj"+ newObject)
+	var parshedQuality = grabObject(id).quality
 
-	if (objectQuality == "genius") {
-		parsedObject.quality = "plausible"
+	if (parshedQuality == "genius") {
+		newObject.quality = "plausible"
 		$(this).siblings().last().text("plausible")
-		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
-	} else if (objectQuality == "plausible") {
-		parsedObject.quality = "swill"
+		storeObject(id, newObject)
+
+	} else if (parshedQuality == "plausible") {
+		newObject.quality = "swill"
 		$(this).siblings().last().text("swill")
-		var update = localStorage.setItem(id, JSON.stringify(parsedObject))
+		storeObject(id, newObject)
 	}
 })
 
@@ -95,11 +98,11 @@ function prepend(idea) {
 	console.log(idea.id);
 	$("#new-idea-article").prepend(`
     <div id="${idea.id}" class="new-idea-article">
-	    <section>
+	    <div class='text-wrapper'>
 	    	<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
-	    </section>
-	      <textarea rows="4" cols="50" class='new-idea-body' placeholder="Body" value="${idea.body}"></textarea>
+				<textarea rows="4" cols="50" class='new-idea-body' value="">${idea.body}</textarea>
+			</div>
 	    <section class="new-idea-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
@@ -116,9 +119,19 @@ function sendToStorage(idea) {
 }
 
 
-// $("#new-idea-article").on("input", function() {
-// 	console.log("This shit works")
-// 	var id = $(this).parent().parent().prop('id');
-//
-//
-// })
+$("#new-idea-article").on("input", '.new-idea-header', function() {
+	var id = $(this).parent().parent().prop('id');
+	var parsedObject = JSON.parse(localStorage.getItem(id))
+	// var changeTitle = parsedObject.title
+	parsedObject.title = $(this).val()
+	localStorage.setItem(id, JSON.stringify(parsedObject))
+})
+$("#new-idea-article").on("input", '.new-idea-body', function() {
+	var id = $(this).parent().prop('id');
+	console.log(id)
+	var parsedObject = JSON.parse(localStorage.getItem(id))
+	console.log(parsedObject)
+	parsedObject.body = $(this).val()
+	// console.log($(this).val())
+	localStorage.setItem(id, JSON.stringify(parsedObject))
+})
