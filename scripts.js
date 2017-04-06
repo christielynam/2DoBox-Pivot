@@ -122,7 +122,6 @@ function sendToStorage(idea) {
 $("#new-idea-article").on("input", '.new-idea-header', function() {
 	var id = $(this).parent().parent().prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
-	// var changeTitle = parsedObject.title
 	parsedObject.title = $(this).val()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
@@ -132,6 +131,5 @@ $("#new-idea-article").on("input", '.new-idea-body', function() {
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	console.log(parsedObject)
 	parsedObject.body = $(this).val()
-	// console.log($(this).val())
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
