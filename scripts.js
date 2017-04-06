@@ -13,6 +13,9 @@ $('#input-title').on('click', function() {
 $('#input-body').on('click', function() {
 	$('#input-body').val(" ")
 })
+$('#input-search').on('click', function() {
+	$('#input-search').val(" ")
+})
 
 //constructor function
 function Idea(title, body) {
@@ -125,3 +128,35 @@ $("#new-idea-article").on("input", '.new-idea-body', function() {
 	parsedObject.body = $(this).val()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
+
+$('#input-search').on('keyup', function() {
+    var searchInput = $(this).val().toLowerCase();
+    $('.text-wrapper').each(function() {
+			console.log($(this).parent())
+      var cardText = $(this).text().toLowerCase();
+			console.log(cardText)
+      if (cardText.indexOf(searchInput) != -1) {
+        $(this).parent().show();
+      } else {
+        $(this).parent().hide();
+      }
+    })
+})
+
+$("#input-title").keypress(function(e) {
+    if(e.which == 13) {
+        $(this).blur()
+    }
+});
+
+$("#input-body").keypress(function(e) {
+    if(e.which == 13) {
+        $(this).blur()
+    }
+});
+
+$("#input-search").keypress(function(e) {
+    if(e.which == 13) {
+        $(this).blur()
+    }
+});
