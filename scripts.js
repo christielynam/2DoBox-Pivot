@@ -1,12 +1,9 @@
-
-
 $(document).ready(function() {
 	for (var i = 0; i < localStorage.length; i++) {
 		prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
 	}
 });
 
-// Clear input fields on click
 $('#input-title').on('click', function() {
 	$('#input-title').val(" ")
 })
@@ -17,7 +14,25 @@ $('#input-search').on('click', function() {
 	$('#input-search').val(" ")
 })
 
-//constructor function
+$('#input-title, #input-body').on('input', function() {
+	var inputTitleVal = $("#input-title").val()
+	var inputBodyVal = $("#input-body").val()
+
+	if (inputTitleVal == '' || inputBodyVal == ' ') {
+		$("#button-save").attr("disabled", true)
+	} else if (inputTitleVal == 'Title') {
+		$("#button-save").attr("disabled", true)
+	} else if (inputBodyVal == 'Body') {
+		$("#button-save").attr("disabled", true)
+	} else {
+		$("#button-save").attr("disabled", false)
+	}
+})
+
+/*=======================================
+>>>>>>>>  Constructor / New  <<<<<<<<
+========================================*/
+
 function Idea(title, body) {
 	this.title = title;
 	this.body = body;
@@ -25,15 +40,18 @@ function Idea(title, body) {
 	this.id = Date.now();
 }
 
-// On click, grab the input fields and prepend to section
+
 $(".button-save").on("click", function() {
 	var title = $('#input-title').val();
 	var body = $("#input-body").val();
 	var idea = new Idea(title, body)
-	console.log(idea);
 	prepend(idea);
 	sendToStorage(idea);
 })
+
+/*=======================================
+>>>>>>>>  localStorage  <<<<<<<<
+========================================*/
 
 function grabObject(id) {
 	var parsedObject = JSON.parse(localStorage.getItem(id))
@@ -44,8 +62,27 @@ function storeObject(id, newObject) {
 	localStorage.setItem(id, JSON.stringify(newObject))
 }
 
+function sendToStorage(idea) {
+	localStorage.setItem(idea.id, JSON.stringify(idea))
+}
+
+$("#new-idea-article").on("input", '.new-idea-header', function() {
+	var id = $(this).parent().parent().prop('id');
+	var parsedObject = JSON.parse(localStorage.getItem(id))
+	parsedObject.title = $(this).val()
+	localStorage.setItem(id, JSON.stringify(parsedObject))
+})
+$("#new-idea-article").on("input", '.new-idea-body', function() {
+	var id = $(this).parent().parent().prop('id');
+	console.log(id)
+	var parsedObject = JSON.parse(localStorage.getItem(id))
+	console.log(parsedObject)
+	parsedObject.body = $(this).val()
+	localStorage.setItem(id, JSON.stringify(parsedObject))
+})
+
 /*=======================================
->>>>>>>>  on click do this  <<<<<<<<
+>>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
 $("#new-idea-article").on("click", ".upvote-image", function() {
@@ -68,7 +105,7 @@ $("#new-idea-article").on("click", ".upvote-image", function() {
 $("#new-idea-article").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
-	console.log("newobj"+ newObject)
+	console.log("newobj" + newObject)
 	var parshedQuality = grabObject(id).quality
 
 	if (parshedQuality == "genius") {
@@ -83,21 +120,23 @@ $("#new-idea-article").on("click", ".downvote-image", function() {
 	}
 })
 
-// trashcan delete
 $("#new-idea-article").on('click', '.delete-image', function() {
-
 	localStorage.removeItem($(this).parent().parent().prop('id'));
 	$(this).parent().parent().remove('.new-idea-article');
 });
+
+/*=======================================
+>>>>>>>>  Prepend  <<<<<<<<
+========================================*/
 
 function prepend(idea) {
 	console.log(idea.id);
 	$("#new-idea-article").prepend(`
     <div id="${idea.id}" class="new-idea-article">
 	    <div class='text-wrapper'>
-	    	<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
+				<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" class='new-idea-body' value="">${idea.body}</textarea>
+				<textarea rows="4" cols="42" id='new-idea-body' class='new-idea-body' value="">${idea.body}</textarea>
 			</div>
 	    <section class="new-idea-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
@@ -110,53 +149,43 @@ function prepend(idea) {
 	$('#input-body').val("Body")
 }
 
-function sendToStorage(idea) {
-	localStorage.setItem(idea.id, JSON.stringify(idea))
-}
-
-$("#new-idea-article").on("input", '.new-idea-header', function() {
-	var id = $(this).parent().parent().prop('id');
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	parsedObject.title = $(this).val()
-	localStorage.setItem(id, JSON.stringify(parsedObject))
-})
-$("#new-idea-article").on("input", '.new-idea-body', function() {
-	var id = $(this).parent().parent().prop('id');
-	console.log(id)
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	console.log(parsedObject)
-	parsedObject.body = $(this).val()
-	localStorage.setItem(id, JSON.stringify(parsedObject))
-})
+/*=======================================
+>>>>>>>>  Key Press / Key Up Events <<<<<<<<
+========================================*/
 
 $('#input-search').on('keyup', function() {
-    var searchInput = $(this).val().toLowerCase();
-    $('.text-wrapper').each(function() {
-			console.log($(this).parent())
-      var cardText = $(this).text().toLowerCase();
-			console.log(cardText)
-      if (cardText.indexOf(searchInput) != -1) {
-        $(this).parent().show();
-      } else {
-        $(this).parent().hide();
-      }
-    })
+	var searchInput = $(this).val().toLowerCase();
+	$('.text-wrapper').each(function() {
+		var cardText = $(this).text().toLowerCase();
+
+		if (cardText.indexOf(searchInput) != -1) {
+			$(this).parent().show();
+		} else {
+			$(this).parent().hide();
+		}
+	})
 })
 
 $("#input-title").keypress(function(e) {
-    if(e.which == 13) {
-        $(this).blur()
-    }
+	if (e.which == 13) {
+		$(this).blur()
+	}
 });
 
 $("#input-body").keypress(function(e) {
-    if(e.which == 13) {
-        $(this).blur()
-    }
+	if (e.which == 13) {
+		$(this).blur()
+	}
 });
 
 $("#input-search").keypress(function(e) {
-    if(e.which == 13) {
-        $(this).blur()
-    }
+	if (e.which == 13) {
+		$(this).blur()
+	}
+});
+
+$(".new-idea-header").keypress(function(e) {
+	if (e.keyCode == 13) {
+		$(this).blur()
+	}
 });

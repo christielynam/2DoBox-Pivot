@@ -70,6 +70,9 @@ header, h1 {
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
+input[value="Title"]:focus {
+  color: #939598;
+}
 
 .input-body {
   width: 100%;
@@ -81,6 +84,10 @@ header, h1 {
   padding: 5px;
   padding-bottom: 42px;
   border: 2px solid #D1D3D4;
+}
+
+input[value="Body"]:focus {
+  color: #939598;
 }
 
 .button-save {
@@ -105,6 +112,7 @@ header, h1 {
   justify-content: center;
 }
 
+
 #input-search {
   width: 90vw;
   font-family: 'Open Sans', sans-serif;
@@ -113,6 +121,9 @@ header, h1 {
   margin: 15px 0 10px 0;
   padding: 5px;
   border: 2px solid #D1D3D4;
+}
+#input-search:focus {
+  color: #939598;
 }
 
 /*=======================================
@@ -138,6 +149,8 @@ h2, .new-idea-header {
   font-weight: 700;
   margin-top: 5px;
   border: 0;
+  resize: none;
+  white-space: nowrap;
 }
 
 .delete-image {
@@ -156,6 +169,7 @@ h2, .new-idea-header {
   color:#939598;
   resize: none;
   border: none;
+
 }
 
 .new-idea-footer {
