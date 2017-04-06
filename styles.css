@@ -111,7 +111,7 @@ input {
   display: flex;
   justify-content: center;
 }
-.input-search {
+#input-search {
   font-family: 'Open Sans', sans-serif;
   border: 2px solid #D1D3D4;
   margin: 12px 0 10px 0;
@@ -273,7 +273,7 @@ h1  {
   margin-bottom: 12px;
 }
 
-.input-search {
+#input-search {
   width: 360px;
   margin: auto;
   margin-top: 12px;
