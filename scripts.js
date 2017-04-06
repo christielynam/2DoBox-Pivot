@@ -1,11 +1,4 @@
-// $(document).ready(function() {
-// 	$(".form").submit(function(event) {
-// 		event.preventDefault();
-// 		console.log("preventdefault works")
-//
-//
-// 	});
-// });
+
 
 $(document).ready(function() {
 	for (var i = 0; i < localStorage.length; i++) {
@@ -118,7 +111,6 @@ function sendToStorage(idea) {
 	localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
-
 $("#new-idea-article").on("input", '.new-idea-header', function() {
 	var id = $(this).parent().parent().prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
@@ -126,7 +118,7 @@ $("#new-idea-article").on("input", '.new-idea-header', function() {
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
 $("#new-idea-article").on("input", '.new-idea-body', function() {
-	var id = $(this).parent().prop('id');
+	var id = $(this).parent().parent().prop('id');
 	console.log(id)
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	console.log(parsedObject)

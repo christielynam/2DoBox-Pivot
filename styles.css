@@ -1,4 +1,4 @@
-h1 {font-size: 300%;}
+/*h1 {font-size: 300%;}*/
 h2 {font-size: 275%;}
 h3 {font-size: 250%;}
 h4 {font-size: 225%;}
@@ -9,6 +9,7 @@ p {}
 * {
   box-sizing: border-box;
 }
+
 .header-wrapper {
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@ header, h1 {
   justify-content: center;
 }
 h1 {
-  font-size: 145%;
+  font-size: 25px;
 }
 body {
   font-family: 'Open Sans', sans-serif;
@@ -37,7 +38,7 @@ body {
   resize: none;
   border: none;
   font-family: 'Open Sans', sans-serif;
-  color:#D1D3D4;
+  color:#939598;
   font-size: 15px;
 }
 
@@ -113,7 +114,7 @@ input {
 .input-search {
   font-family: 'Open Sans', sans-serif;
   border: 2px solid #D1D3D4;
-  margin: 12px 0 12px 0;
+  margin: 12px 0 10px 0;
   color:#D1D3D4;
   font-size: 15px;
   padding: 5px;
@@ -134,10 +135,12 @@ h2, .new-idea-header {
   display: inline-block;
   font-family: 'Roboto Slab', serif;
   color: #6d6371;
+  width: 200px;
   font-size: 12px;
   font-weight: 700;
   font-size: 19px;
   border: 0;
+  margin-top: 15px;
 }
 img {
   /*display: inline-block;*/
@@ -164,6 +167,7 @@ h3 {
   float: right;
   width: 20px;
   height: 20px;
+  margin-top: 15px;
   background: none;
   border: none;
   background-repeat: round;
@@ -208,13 +212,79 @@ h3 {
 .title-container {
   margin-top: 12px;
 }
+
 p {
   margin-top: 10px;
 }
 
-
 .h3-footer {
   font-family: 'Roboto Slab', serif;
-
+  padding-right: 5px;
   margin-left: 5px;
+}
+
+/*=======================================
+>>>>>>>>  Footer  <<<<<<<<
+========================================*/
+
+.footer-box {
+  background: #e5f3f2;
+  margin: auto;
+  width: 200px;
+  height: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.footer-text  {
+  color: #FFF;
+  font-size: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+/*=======================================
+>>>>>>>>  @media min400  <<<<<<<<
+========================================*/
+@media screen and (min-width: 400px) {
+
+.input-title  {
+  width: 360px;
+  margin: auto;
+  margin-top: 15px;
+}
+
+h1  {
+  font-size: 38px;
+}
+
+.input-body {
+  width: 360px;
+  height: 34px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.button-save {
+  width: 360px;
+  margin: auto;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.input-search {
+  width: 360px;
+  margin: auto;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.new-idea-article {
+  width: 360px;
+  margin: auto;
+  /*margin-top: 12px;
+  margin-bottom: 10px;*/
+}
+
 }
