@@ -17,12 +17,6 @@ body {
 .header {
   width: 100%;
   background: #e5f3f2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-header, h1 {
   font-family: 'Roboto Slab', serif;
   font-size: 25px;
   padding-top: 10px;
@@ -30,6 +24,7 @@ header, h1 {
 
 .h1-idea {
   color: #00a79d;
+  text-align: center;
 }
 
 span {
@@ -39,15 +34,18 @@ span {
 /*=======================================
 >>>>>>>>  form input body & title  <<<<<<
 ========================================*/
-
+.input-search,
 .form {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+  font-family: 'Open Sans', sans-serif;
   font-size: 15px;
+  color:#D1D3D4;
 }
 
 .input-title {
+  width: 100%;
   font-size: inherit;
   color:#D1D3D4;
   padding: 5px;
@@ -55,6 +53,7 @@ span {
 }
 
 .input-body {
+  width: 100%;
   height: 70px;
   font-size: inherit;
   color: #D1D3D4;
@@ -85,17 +84,8 @@ span {
 /*=======================================
 >>>>>>>>  section search  <<<<<<<<
 ========================================*/
-main {
-  width: 100%;
-}
+
 .input-search {
-  width: 50%;
-  display: inline-block;
-  margin: auto;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
-  color:#D1D3D4;
-  margin: 15px 0 10px 0;
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
@@ -203,7 +193,7 @@ h3 {
 >>>>>>>>  Footer  <<<<<<<<
 ========================================*/
 
-.footer-box {
+/*.footer-box {
   background: #e5f3f2;
   margin: auto;
   width: 200px;
@@ -217,7 +207,7 @@ h3 {
   font-size: 10px;
   padding: 5px;
   text-align: center;
-}
+}*/
 
 /*=======================================
 >>>>>>>>  hover properties  <<<<<<<<
@@ -239,7 +229,7 @@ h3 {
 >>>>>>>>  @media min400  <<<<<<<<
 ========================================*/
 
-@media screen and (min-width: 400px) {
+/*@media screen and (min-width: 400px) {
 
 .input-title  {
   width: 360px;
@@ -278,4 +268,4 @@ h1  {
   margin: auto;
 }
 
-}
+}*/
