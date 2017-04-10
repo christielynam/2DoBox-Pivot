@@ -8,8 +8,6 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  display: flex;
-  flex-direction: column;
 }
 
 /*=======================================
@@ -28,9 +26,6 @@ header, h1 {
   font-family: 'Roboto Slab', serif;
   font-size: 25px;
   padding-top: 10px;
-  display: inline-block;
-  display: flex;
-  justify-content: center;
 }
 
 .h1-idea {
@@ -80,20 +75,23 @@ span {
   padding: 0;
   border: 0;
 }
+.button-save:disabled {
+  background-color: #D1D3D4;
+}
+.button-save:hover {
+  background-color: #00A79D;
+}
 
 /*=======================================
 >>>>>>>>  section search  <<<<<<<<
 ========================================*/
-
-.search {
-  font-family: 'Open Sans', sans-serif;
-  display: flex;
-  justify-content: center;
+main {
+  width: 100%;
 }
-
-
-#input-search {
-  width: 90vw;
+.input-search {
+  width: 50%;
+  display: inline-block;
+  margin: auto;
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   color:#D1D3D4;
@@ -101,7 +99,7 @@ span {
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
-#input-search:focus {
+.input-search:focus {
   color: #939598;
 }
 
