@@ -9,20 +9,18 @@
     <title>Ideabox</title>
   </head>
   <body>
-    <section class='header-wrapper'>
-      <header>
-        <h1 id='h1-idea' class='h1-idea'>idea</h1><h1 id='h1-box' class='h1-box'>box</h1>
-      </header>
+    <header class="header">
+      <h1 class="h1-idea">idea<span>box</span></h1>
       <form class="form" action="index.html" method="post">
-        <input id='input-title' class='input-title' type="text" name="input1" value="Title" maxlength="30">
-        <input id='input-body' class='input-body' type="text" name="input2" value="Body" maxlength="300">
-        <button id="button-save" class="button-save" type="button" name="save" disabled="true">save</button>
+        <input class="input-title" type="text" name="input1" maxlength="30" placeholder="Title">
+        <input class="input-body" type="text" name="input2" maxlength="300" placeholder="Body">
+        <button class="button-save" type="button" name="save" disabled="true">save</button>
       </form>
-    </section>
-    <form class="search" action="index.html" method="post">
-      <input id='input-search' type="search" name="search" value="Search">
-    </form>
-    <article id="new-idea-article" class="new-idea-article">
+    </header>
+    <!-- <form class="search" action="index.html" method="post"> -->
+      <input class="input-search" type="search" name="search" placeholder="Search">
+    <!-- </form> -->
+    <article class="new-idea-article">
     </article>
     <footer>
       <div class="footer-box">
