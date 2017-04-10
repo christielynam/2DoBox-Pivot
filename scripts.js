@@ -4,6 +4,8 @@ $(document).ready(function() {
 	}
 });
 
+
+// Refactor for sure
 $('#input-title').on('click', function() {
 	$('#input-title').val(" ")
 })
@@ -18,6 +20,8 @@ $('#input-title, #input-body').on('input', function() {
 	var inputTitleVal = $("#input-title").val()
 	var inputBodyVal = $("#input-body").val()
 
+
+// Parse into save function
 	if (inputTitleVal == '' || inputBodyVal == ' ') {
 		$("#button-save").attr("disabled", true)
 	} else if (inputTitleVal == 'Title') {
@@ -58,6 +62,8 @@ function grabObject(id) {
 	return parsedObject;
 }
 
+
+// 2 functions doing the same thing
 function storeObject(id, newObject) {
 	localStorage.setItem(id, JSON.stringify(newObject))
 }
@@ -167,6 +173,7 @@ $('#input-search').on('keyup', function() {
 })
 
 $("#input-title").keypress(function(e) {
+  console.log(e)
 	if (e.which == 13) {
 		$(this).blur()
 	}
