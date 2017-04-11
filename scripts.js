@@ -145,10 +145,10 @@ function prepend(idea) {
 	console.log(idea.id);
 	$('.card-container').prepend(`
     <article id="${idea.id}" class="card">
-	    <div class='text-wrapper'>
-				<h3 class='new-idea-header' contenteditable='true'>${idea.title}'</h3>
-	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" id='new-idea-body' class='new-idea-body' value="">${idea.body}</textarea>
+	    <div class="text-wrapper">
+				<h3 class="new-idea-header" contenteditable='true'>${idea.title}</h3>
+	    	<button id="delete-image" class="delete-image" type="button" name="button"></button>
+				<textarea rows="4" cols="42" id="new-idea-body" class="new-idea-body" value="">${idea.body}</textarea>
 			</div>
 	    <section class="new-idea-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
