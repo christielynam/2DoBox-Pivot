@@ -9,12 +9,12 @@ function pageLoad() {
     prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
   }
 }
-$('.input-title, .input-body').on('input', disableSave)
+$('.input-title, .input-task').on('input', disableSave)
 
 function disableSave () {
   var inputTitleVal = $('.input-title').val()
-  var inputBodyVal = $('.input-body').val()
-  if (inputTitleVal == '' || inputBodyVal == '') {
+  var inputTaskVal = $('.input-task').val()
+  if (inputTitleVal == '' || inputTaskVal == '') {
 		$('.button-save').prop('disabled', true)
 	} else {
 		$('.button-save').prop('disabled', false)
@@ -26,9 +26,9 @@ function disableSave () {
 >>>>>>>>  Constructor / New  <<<<<<<<
 ========================================*/
 
-function Idea(title, body) {
+function Task(title, task) {
 	this.title = title;
-	this.body = body;
+	this.task = task;
 	this.quality = 'swill';
 	this.id = Date.now();
 }
@@ -42,17 +42,17 @@ function saveHandler () {
 
 function saveInputs() {
   var title = $('.input-title').val();
-  var body = $('.input-body').val();
-  var idea = new Idea(title, body)
-  prepend(idea);
-  sendToStorage(idea);
+  var task = $('.input-task').val();
+  var todo = new Task(title, task)
+  prepend(todo);
+  sendToStorage(todo);
 }
 
 function clearInputs() {
   var title = $('.input-title');
-  var body = $('.input-body');
+  var task = $('.input-task');
   title.val('');
-  body.val('');
+  task.val('');
   disableSave();
 }
 
@@ -67,15 +67,15 @@ function grabObject(id) {
 	return parsedObject;
 }
 
-function sendToStorage(idea) {
-	localStorage.setItem(idea.id, JSON.stringify(idea))
+function sendToStorage(todo) {
+	localStorage.setItem(todo.id, JSON.stringify(todo))
 }
 
-$('.card').on('blur', '.new-idea-header', function() {
+$('body').on('blur', '.card-header', function() {
 	editTitle(this)
 })
 
-$('.card').on('blur', '.new-idea-body', function() {
+$('body').on('blur', '.card-body', function() {
   editBody(this)
 })
 
@@ -152,19 +152,19 @@ function deleteCard() {
 >>>>>>>>  Prepend  <<<<<<<<
 ========================================*/
 
-function prepend(idea) {
-	console.log(idea.id);
+function prepend(todo) {
+	console.log(todo.id);
 	$('.card-container').prepend(`
-    <article id="${idea.id}" class="card">
+    <article id="${todo.id}" class="card">
 	    <div class="text-wrapper">
-				<h3 class="new-idea-header" contenteditable='true'>${idea.title}</h3>
+				<h3 class="card-header" contenteditable='true'>${todo.title}</h3>
 	    	<button id="delete-image" class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" id="new-idea-body" class="new-idea-body" value="">${idea.body}</textarea>
+				<textarea rows="4" cols="42" class="card-body" value="">${todo.task}</textarea>
 			</div>
-	    <section class="new-idea-footer">
+	    <section class="card-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
-	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${idea.quality}</h3>
+	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${todo.quality}</h3>
 	    </section>
     </article>
     `);
@@ -187,7 +187,7 @@ function search() {
 }
 
 // May need some adjustements
-$('body').on('keydown', '.new-idea-header, .new-idea-body', hitReturn)
+$('body').on('keydown', '.card-header, .card-body', hitReturn)
 
 function hitReturn() {
   var keyDownEvent = arguments[0]
