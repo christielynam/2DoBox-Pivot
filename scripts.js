@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 // Refactor for sure
 $('#input-title').on('click', function() {
-            })
+})
 $('#input-body').on('click', function() {
 	$('#input-body').val(" ")
 })

@@ -71,7 +71,6 @@ span {
   color: white;
   background: #00a79d;
   margin: 12px 0 15px 0;
-  padding: 0;
   border: 0;
 }
 .button-save:disabled {
@@ -97,10 +96,14 @@ span {
 >>>>>>>>  article  <<<<<<<<
 ========================================*/
 
-.new-idea-article {
-  width: 90vw;
+.card-container {
+  width: 50%;
   margin: auto;
-  /*border-bottom: 2px solid #D1D3D4;*/
+}
+
+
+.new-idea-article {
+  width: 100%;
 }
 
 .title-container {
@@ -132,6 +135,7 @@ h2, .new-idea-header {
 }
 
 .new-idea-body {
+  width: 100%;
   font-size: 15px;
   color:#939598;
   resize: none;
