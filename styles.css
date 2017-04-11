@@ -36,10 +36,10 @@ span {
 ========================================*/
 .input-search,
 .form {
-  width: 70%;
+  width: 100%;
   max-width: 400px;
   display: block;
-  margin: 15px auto;
+  margin: 15px auto 0 auto;
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   color:#D1D3D4;
@@ -83,7 +83,7 @@ span {
   background-color: #D1D3D4;
   cursor: not-allowed;
 }
-.button-save:hover {
+.button-save:hover:enabled {
   background-color: #045E55;
 }
 
@@ -92,10 +92,6 @@ span {
 ========================================*/
 
 .input-search {
-  width: 70%;
-  max-width: 400px;
-  display: block;
-  margin: auto;
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
@@ -122,7 +118,7 @@ span {
 }
 
 h2, .new-idea-header {
-  width: 200px;
+  width: 80%;
   display: inline-block;
   font-family: 'Roboto Slab', serif;
   color: #6d6371;
