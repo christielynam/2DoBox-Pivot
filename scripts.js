@@ -15,13 +15,9 @@ function disableSave () {
   var inputTitleVal = $('.input-title').val()
   var inputBodyVal = $('.input-body').val()
   if (inputTitleVal == '' || inputBodyVal == '') {
-		$('.button-save').attr('disabled', true)
-	} else if (inputTitleVal == 'Title') {
-		$('.button-save').attr('disabled', true)
-	} else if (inputBodyVal == 'Body') {
-		$('.button-save').attr('disabled', true)
+		$('.button-save').prop('disabled', true)
 	} else {
-		$('.button-save').attr('disabled', false)
+		$('.button-save').prop('disabled', false)
 	}
 }
 
@@ -37,7 +33,12 @@ function Idea(title, body) {
 	this.id = Date.now();
 }
 
-$('.button-save').on('click', saveInputs);
+$('.button-save').on('click', saveHandler);
+
+function saveHandler () {
+  saveInputs();
+  clearInputs();
+}
 
 function saveInputs() {
   var title = $('.input-title').val();
@@ -46,6 +47,16 @@ function saveInputs() {
   prepend(idea);
   sendToStorage(idea);
 }
+
+function clearInputs() {
+  var title = $('.input-title');
+  var body = $('.input-body');
+  title.val('');
+  body.val('');
+  disableSave();
+}
+
+
 
 /*=======================================
 >>>>>>>>  localStorage  <<<<<<<<
