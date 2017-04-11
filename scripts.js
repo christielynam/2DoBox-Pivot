@@ -98,7 +98,7 @@ function upvoteQuality(){
   $(this).siblings('#quality').text(cardObj.quality)
 }
 
-function downvoteQuality(currentQuality){
+function downvoteQuality(){
   var id = $(this).closest('.card').prop('id');
   var cardObj = grabObject(id);
   cardObj.quality = decrementQuality(cardObj.quality)
