@@ -47,7 +47,7 @@ span {
 .input-title {
   width: 100%;
   font-size: inherit;
-  color:#D1D3D4;
+  color:#6D6E71;
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
@@ -56,11 +56,17 @@ span {
   width: 100%;
   height: 70px;
   font-size: inherit;
-  color: #D1D3D4;
+  color: #6D6E71;
   margin-top: 10px;
   padding: 5px;
   padding-bottom: 42px;
   border: 2px solid #D1D3D4;
+}
+
+.input-title::placeholder,
+.input-body::placeholder,
+.input-search::placeholder{
+  color: #D1D3D4;
 }
 
 .button-save {
@@ -75,9 +81,10 @@ span {
 }
 .button-save:disabled {
   background-color: #D1D3D4;
+  cursor: not-allowed;
 }
 .button-save:hover {
-  background-color: #00A79D;
+  background-color: #045E55;
 }
 
 /*=======================================
@@ -89,7 +96,7 @@ span {
   border: 2px solid #D1D3D4;
 }
 .input-search:focus {
-  color: #939598;
+  color:#6D6E71;
 }
 
 /*=======================================

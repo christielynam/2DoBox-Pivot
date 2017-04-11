@@ -1,36 +1,30 @@
+/*=======================================
+   >>>>>>>>  Event Listeners  <<<<<<<<
+========================================*/
 $(document).ready(function() {
 	for (var i = 0; i < localStorage.length; i++) {
 		prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
 	}
 });
+$('.input-title, .input-body').on('input', disableSave)
 
 
-// Refactor for sure
-$('#input-title').on('click', function() {
-})
-$('#input-body').on('click', function() {
-	$('#input-body').val(" ")
-})
-$('#input-search').on('click', function() {
-	$('#input-search').val(" ")
-})
-
-$('#input-title, #input-body').on('input', function() {
-	var inputTitleVal = $("#input-title").val()
-	var inputBodyVal = $("#input-body").val()
 
 
-// Parse into save function
-	if (inputTitleVal == '' || inputBodyVal == ' ') {
-		$("#button-save").attr("disabled", true)
+function disableSave () {
+  var inputTitleVal = $('.input-title').val()
+  var inputBodyVal = $('.input-body').val()
+  if (inputTitleVal == '' || inputBodyVal == '') {
+		$('.button-save').attr('disabled', true)
 	} else if (inputTitleVal == 'Title') {
-		$("#button-save").attr("disabled", true)
+		$('.button-save').attr('disabled', true)
 	} else if (inputBodyVal == 'Body') {
-		$("#button-save").attr("disabled", true)
+		$('.button-save').attr('disabled', true)
 	} else {
-		$("#button-save").attr("disabled", false)
+		$('.button-save').attr('disabled', false)
 	}
-})
+}
+
 
 /*=======================================
 >>>>>>>>  Constructor / New  <<<<<<<<
@@ -39,18 +33,28 @@ $('#input-title, #input-body').on('input', function() {
 function Idea(title, body) {
 	this.title = title;
 	this.body = body;
-	this.quality = "swill"
+	this.quality = 'swill';
 	this.id = Date.now();
 }
 
+Idea.prototype.changeQuality = function(quality, buttonPressed) {
+  var qualityArray = ['swill', 'plausible', 'genius']
 
-$(".button-save").on("click", function() {
-	var title = $('#input-title').val();
-	var body = $("#input-body").val();
-	var idea = new Idea(title, body)
-	prepend(idea);
-	sendToStorage(idea);
-})
+  //TODO: Build functionality for changing quality up and down
+  var index = qualityArray.indexOf(quality)
+  console.log(index)
+};
+
+
+$('.button-save').on('click', saveInputs);
+
+function saveInputs() {
+  var title = $('.input-title').val();
+  var body = $('.input-body').val();
+  var idea = new Idea(title, body)
+  prepend(idea);
+  sendToStorage(idea);
+}
 
 /*=======================================
 >>>>>>>>  localStorage  <<<<<<<<
@@ -61,8 +65,6 @@ function grabObject(id) {
 	return parsedObject;
 }
 
-
-// 2 functions doing the same thing
 function storeObject(id, newObject) {
 	localStorage.setItem(id, JSON.stringify(newObject))
 }
@@ -71,61 +73,71 @@ function sendToStorage(idea) {
 	localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
-$("#new-idea-article").on("input", '.new-idea-header', function() {
-	var id = $(this).parent().parent().prop('id');
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	parsedObject.title = $(this).val()
-	localStorage.setItem(id, JSON.stringify(parsedObject))
+
+
+// Move to top
+$('.new-idea-article').on('input', '.new-idea-header', function() {
+	editTitle(this)
 })
-$("#new-idea-article").on("input", '.new-idea-body', function() {
-	var id = $(this).parent().parent().prop('id');
-	console.log(id)
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	console.log(parsedObject)
-	parsedObject.body = $(this).val()
-	localStorage.setItem(id, JSON.stringify(parsedObject))
+
+$('.new-idea-article').on('input', '.new-idea-body', function() {
+  editBody(this)
 })
+
+function editTitle(element){
+  var id = $(element).parent().parent().prop('id');
+	var parsedObject = JSON.parse(localStorage.getItem(id))
+	parsedObject.title = $(element).val()
+	localStorage.setItem(id, JSON.stringify(parsedObject))
+}
+
+function editBody(element) {
+  var id = $(element).parent().parent().prop('id');
+  var parsedObject = JSON.parse(localStorage.getItem(id))
+  parsedObject.body = $(element).val()
+  localStorage.setItem(id, JSON.stringify(parsedObject))
+}
 
 /*=======================================
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-$("#new-idea-article").on("click", ".upvote-image", function() {
+$('.new-idea-article').on('click', '.upvote-image', function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
 
-	if (parshedQuality == "swill") {
-		newObject.quality = "plausible"
-		$(this).siblings().last().text("plausible")
+	if (parshedQuality == 'swill') {
+		newObject.quality = 'plausible'
+		$(this).siblings().last().text('plausible')
 		storeObject(id, newObject)
 
-	} else if (parshedQuality == "plausible") {
-		newObject.quality = "genius"
-		$(this).siblings().last().text("genius")
+	} else if (parshedQuality == 'plausible') {
+		newObject.quality = 'genius'
+		$(this).siblings().last().text('genius')
 		storeObject(id, newObject)
 	}
 })
 
-$("#new-idea-article").on("click", ".downvote-image", function() {
+$('.new-idea-article').on('click', '.downvote-image', function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
-	console.log("newobj" + newObject)
+	console.log('newobj' + newObject)
 	var parshedQuality = grabObject(id).quality
 
-	if (parshedQuality == "genius") {
-		newObject.quality = "plausible"
-		$(this).siblings().last().text("plausible")
+	if (parshedQuality == 'genius') {
+		newObject.quality = 'plausible'
+		$(this).siblings().last().text('plausible')
 		storeObject(id, newObject)
 
-	} else if (parshedQuality == "plausible") {
-		newObject.quality = "swill"
-		$(this).siblings().last().text("swill")
+	} else if (parshedQuality == 'plausible') {
+		newObject.quality = 'swill'
+		$(this).siblings().last().text('swill')
 		storeObject(id, newObject)
 	}
 })
 
-$("#new-idea-article").on('click', '.delete-image', function() {
+$('.new-idea-article').on('click', '.delete-image', function() {
 	localStorage.removeItem($(this).parent().parent().prop('id'));
 	$(this).parent().parent().remove('.new-idea-article');
 });
@@ -150,15 +162,13 @@ function prepend(idea) {
 	    </section>
     </div>
     `);
-	$('#input-title').val("Title")
-	$('#input-body').val("Body")
 }
 
 /*=======================================
 >>>>>>>>  Key Press / Key Up Events <<<<<<<<
 ========================================*/
 
-$('#input-search').on('keyup', function() {
+$('.input-search').on('keyup', function() {
 	var searchInput = $(this).val().toLowerCase();
 	$('.text-wrapper').each(function() {
 		var cardText = $(this).text().toLowerCase();
@@ -171,26 +181,26 @@ $('#input-search').on('keyup', function() {
 	})
 })
 
-$("#input-title").keypress(function(e) {
+$('.input-title').keypress(function(e) {
   console.log(e)
 	if (e.which == 13) {
 		$(this).blur()
 	}
 });
 
-$("#input-body").keypress(function(e) {
+$('.input-body').keypress(function(e) {
 	if (e.which == 13) {
 		$(this).blur()
 	}
 });
 
-$("#input-search").keypress(function(e) {
+$('.input-search').keypress(function(e) {
 	if (e.which == 13) {
 		$(this).blur()
 	}
 });
 
-$(".new-idea-header").keypress(function(e) {
+$('.new-idea-header').keypress(function(e) {
 	if (e.keyCode == 13) {
 		$(this).blur()
 	}
