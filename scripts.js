@@ -106,27 +106,27 @@ function downvoteQuality(currentQuality){
   $(this).siblings('#quality').text(cardObj.quality)
 }
 
-function qualityArray () {
-  return qualityArray = ['swill', 'plausible', 'genius'];
+function qualities() {
+  return ['swill', 'plausible', 'genius'];
 }
 
 function incrementQuality(quality) {
-  var qualityArray = qualityArray()
+  var qualityArray = qualities()
   var index = qualityArray.indexOf(quality);
-  if (index === array.length - 1) {
-    return array[index]
+  if (index === qualityArray.length - 1) {
+    return qualityArray[index]
   } else {
-    return array[index + 1]
+    return qualityArray[index + 1]
   }
 }
 
 function decrementQuality(quality) {
-  var qualityArray = qualityArray()
+  var qualityArray = qualities()
   var index = qualityArray.indexOf(quality);
   if (index === 0) {
-    return array[index]
+    return qualityArray[index]
   } else {
-    return array[index - 1]
+    return qualityArray[index - 1]
   }
 }
 
@@ -146,7 +146,7 @@ function prepend(idea) {
 	$('.card-container').prepend(`
     <article id="${idea.id}" class="card">
 	    <div class='text-wrapper'>
-				<h3 class='new-idea-header'>${idea.title}'</h3>
+				<h3 class='new-idea-header' contenteditable='true'>${idea.title}'</h3>
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
 				<textarea rows="4" cols="42" id='new-idea-body' class='new-idea-body' value="">${idea.body}</textarea>
 			</div>
