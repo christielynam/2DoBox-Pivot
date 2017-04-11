@@ -38,11 +38,10 @@ function Idea(title, body) {
 }
 
 Idea.prototype.changeQuality = function(quality, buttonPressed) {
-  var qualityArray = ['swill', 'plausible', 'genius']
+
 
   //TODO: Build functionality for changing quality up and down
-  var index = qualityArray.indexOf(quality)
-  console.log(index)
+
 };
 
 
@@ -62,10 +61,10 @@ function saveInputs() {
 
 
 // Grab object and store object are only being used for quality indicators
-function grabObject(id) {
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	return parsedObject;
-}
+// function grabObject(id) {
+// 	var parsedObject = JSON.parse(localStorage.getItem(id))
+// 	return parsedObject;
+// }
 
 function storeObject(id, newObject) {
 	localStorage.setItem(id, JSON.stringify(newObject))
@@ -102,41 +101,77 @@ function editBody(element) {
 ========================================*/
 
 // REFACTORING INTO PROTOTYPE
+function shananigans(){
+  // var qualityArray = ['swill', 'plausible', 'genius'];
+
+
+}
+
+function incrementQuality(currentQuality){
+  var qualityArray = ['swill', 'plausible', 'genius'];
+  var index = qualityArray.indexOf(currentQuality);
+  if (index === qualityArray.length - 1) {
+    return qualityArray[index];
+  } else {
+    return qualityArray[index++];
+  }
+}
+
+function decrementQuality(currentQuality){
+  var qualityArray = ['swill', 'plausible', 'genius'];
+  var index = qualityArray.indexOf(currentQuality);
+  if (index === 0) {
+    return qualityArray[index];
+  } else {
+    return qualityArray[index--];
+  }
+
+}
 
 $('.card').on('click', '.upvote-image', function() {
-	var id = $(this).parent().parent().prop('id');
-	var newObject = grabObject(id)
-	var parshedQuality = grabObject(id).quality
+  var card = $(this).closest('.card');
+  var quality = card.find('#quality').text();
+  console.log(quality)
+  var newQuality = incrementQuality(quality)
 
-	if (parshedQuality == 'swill') {
-		newObject.quality = 'plausible'
-		$(this).siblings().last().text('plausible')
-		storeObject(id, newObject)
+  console.log(newQuality);
 
-	} else if (parshedQuality == 'plausible') {
-		newObject.quality = 'genius'
-		$(this).siblings().last().text('genius')
-		storeObject(id, newObject)
-	}
 })
 
-$('.card').on('click', '.downvote-image', function() {
-	var id = $(this).parent().parent().prop('id');
-	var newObject = grabObject(id)
-	console.log('newobj' + newObject)
-	var parshedQuality = grabObject(id).quality
-
-	if (parshedQuality == 'genius') {
-		newObject.quality = 'plausible'
-		$(this).siblings().last().text('plausible')
-		storeObject(id, newObject)
-
-	} else if (parshedQuality == 'plausible') {
-		newObject.quality = 'swill'
-		$(this).siblings().last().text('swill')
-		storeObject(id, newObject)
-	}
-})
+// $('.card').on('click', '.upvote-image', function() {
+// 	var id = $(this).parent().parent().prop('id');
+// 	var newObject = grabObject(id)
+// 	var parshedQuality = grabObject(id).quality
+//
+// 	if (parshedQuality == 'swill') {
+// 		newObject.quality = 'plausible'
+// 		$(this).siblings().last().text('plausible')
+// 		storeObject(id, newObject)
+//
+// 	} else if (parshedQuality == 'plausible') {
+// 		newObject.quality = 'genius'
+// 		$(this).siblings().last().text('genius')
+// 		storeObject(id, newObject)
+// 	}
+// })
+//
+// $('.card').on('click', '.downvote-image', function() {
+// 	var id = $(this).parent().parent().prop('id');
+// 	var newObject = grabObject(id)
+// 	console.log('newobj' + newObject)
+// 	var parshedQuality = grabObject(id).quality
+//
+// 	if (parshedQuality == 'genius') {
+// 		newObject.quality = 'plausible'
+// 		$(this).siblings().last().text('plausible')
+// 		storeObject(id, newObject)
+//
+// 	} else if (parshedQuality == 'plausible') {
+// 		newObject.quality = 'swill'
+// 		$(this).siblings().last().text('swill')
+// 		storeObject(id, newObject)
+// 	}
+// })
 
 
 //change parent to closest
@@ -163,7 +198,7 @@ function prepend(idea) {
 				<button class="downvote-image" type="button" name="button"></button>
 	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${idea.quality}</h3>
 	    </section>
-    </articl>
+    </article>
     `);
 }
 
