@@ -78,7 +78,7 @@ function editTitle(element){
 function editBody(element) {
   var id = $(element).parent().parent().prop('id');
   var parsedObject = JSON.parse(localStorage.getItem(id))
-  parsedObject.body = $(element).val()
+  parsedObject.body = $(element).text()
   localStorage.setItem(id, JSON.stringify(parsedObject))
 }
 
@@ -175,7 +175,12 @@ function search() {
   });
 }
 
-$('.new-idea-header').on('keydown', function(e) {
-  console.log(this)
-  $(this).blur();
-})
+// May need some adjustements
+$('body').on('keydown', '.new-idea-header, .new-idea-body', hitReturn)
+
+function hitReturn() {
+  var keyDownEvent = arguments[0]
+  if (keyDownEvent.which == 13){
+    $(this).blur()
+  }
+}
