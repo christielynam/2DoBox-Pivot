@@ -73,9 +73,6 @@ function sendToStorage(idea) {
 	localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
-
-
-// Move to top
 $('.new-idea-article').on('input', '.new-idea-header', function() {
 	editTitle(this)
 })
@@ -169,20 +166,18 @@ function prepend(idea) {
 /*=======================================
 >>>>>>>>  Key Press / Key Up Events <<<<<<<<
 ========================================*/
+$('.input-search').on('input', search)
 
-$('.input-search').on('keyup', function() {
-	var searchInput = $(this).val().toLowerCase();
-	$('.text-wrapper').each(function() {
-    console.log(this);
-		var cardText = $(this).text().toLowerCase();
-
-		if (cardText.indexOf(searchInput) != -1) {
-			$(this).parent().show();
-		} else {
-			$(this).parent().hide();
-		}
-	})
-})
+function search() {
+  var searchInput = $('.input-search').val().toLowerCase()
+  $('.new-idea-article').each(function(){
+    if ($(this).text().indexOf(searchInput) < 0) {
+      $(this).hide();
+    } else {
+      $(this).show();
+    }
+  });
+}
 
 $('.input-title').keypress(function(e) {
   console.log(e)
