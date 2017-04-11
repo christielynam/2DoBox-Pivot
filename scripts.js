@@ -97,9 +97,9 @@ function editBody(element) {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-$('.card').on('click', '.upvote-image', upvoteQuality)
+$('body').on('click', '.upvote-image', upvoteQuality)
 
-$('.card').on('click', '.downvote-image', downvoteQuality)
+$('body').on('click', '.downvote-image', downvoteQuality)
 
 function upvoteQuality(){
   var id = $(this).closest('.card').prop('id');
@@ -141,7 +141,7 @@ function decrementQuality(quality) {
   }
 }
 
-$('.card').on('click', '.delete-image', deleteCard)
+$('body').on('click', '.delete-image', deleteCard)
 
 function deleteCard() {
   localStorage.removeItem($(this).closest('.card').prop('id'));
@@ -178,7 +178,7 @@ $('.input-search').on('input', search)
 function search() {
   var searchInput = $('.input-search').val().toLowerCase()
   $('.card').each(function(){
-    if ($(this).text().indexOf(searchInput) < 0) {
+    if ($(this).text().toLowerCase().indexOf(searchInput) < 0) {
       $(this).hide();
     } else {
       $(this).show();
