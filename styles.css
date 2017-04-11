@@ -92,6 +92,9 @@ span {
 ========================================*/
 
 .input-search {
+  width: 50%;
+  display: block;
+  margin: auto;
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
@@ -236,47 +239,17 @@ h3 {
   background-image: url("assets/downvote-hover.svg");
 }
 
-/*=======================================
->>>>>>>>  @media min400  <<<<<<<<
-========================================*/
+/*MEDIA QUERY*/
 
-/*@media screen and (min-width: 400px) {
-
-.input-title  {
-  width: 360px;
-  margin: auto;
-  margin-top: 15px;
+@media screen and (max-width: 700px) {
+  .form,
+  .input-search,
+  .card-container {
+    width: 70%;
+  }
+  .input-title,
+  .input-body,
+  .button-save {
+    width: 100%;
+  }
 }
-
-h1  {
-  font-size: 38px;
-}
-
-.input-body {
-  width: 360px;
-  height: 34px;
-  padding: 5px;
-  margin: auto;
-  margin-top: 10px;
-}
-
-.button-save {
-  width: 360px;
-  margin: auto;
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
-
-#input-search {
-  width: 360px;
-  margin: auto;
-  margin-top: 12px;
-  margin-bottom: 10px;
-}
-
-.card {
-  width: 360px;
-  margin: auto;
-}
-
-}*/
