@@ -1,15 +1,15 @@
 /*=======================================
    >>>>>>>>  Event Listeners  <<<<<<<<
 ========================================*/
-$(document).ready(function() {
-	for (var i = 0; i < localStorage.length; i++) {
-		prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
-	}
-});
+pageLoad();
+
+function pageLoad() {
+  for (var i = 0; i < localStorage.length; i++) {
+    console.log(i);
+    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
+  }
+}
 $('.input-title, .input-body').on('input', disableSave)
-
-
-
 
 function disableSave () {
   var inputTitleVal = $('.input-title').val()
@@ -60,6 +60,8 @@ function saveInputs() {
 >>>>>>>>  localStorage  <<<<<<<<
 ========================================*/
 
+
+// Grab object and store object are only being used for quality indicators
 function grabObject(id) {
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	return parsedObject;
@@ -73,18 +75,18 @@ function sendToStorage(idea) {
 	localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
-$('.new-idea-article').on('input', '.new-idea-header', function() {
+$('.card').on('blur', '.new-idea-header', function() {
 	editTitle(this)
 })
 
-$('.new-idea-article').on('input', '.new-idea-body', function() {
+$('.card').on('blur', '.new-idea-body', function() {
   editBody(this)
 })
 
 function editTitle(element){
   var id = $(element).parent().parent().prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
-	parsedObject.title = $(element).val()
+	parsedObject.title = $(element).text()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 }
 
@@ -101,7 +103,7 @@ function editBody(element) {
 
 // REFACTORING INTO PROTOTYPE
 
-$('.new-idea-article').on('click', '.upvote-image', function() {
+$('.card').on('click', '.upvote-image', function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
@@ -118,7 +120,7 @@ $('.new-idea-article').on('click', '.upvote-image', function() {
 	}
 })
 
-$('.new-idea-article').on('click', '.downvote-image', function() {
+$('.card').on('click', '.downvote-image', function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	console.log('newobj' + newObject)
@@ -136,9 +138,11 @@ $('.new-idea-article').on('click', '.downvote-image', function() {
 	}
 })
 
-$('.new-idea-article').on('click', '.delete-image', function() {
+
+//change parent to closest
+$('.card').on('click', '.delete-image', function() {
 	localStorage.removeItem($(this).parent().parent().prop('id'));
-	$(this).parent().parent().remove('.new-idea-article');
+	$(this).parent().parent().remove('.card');
 });
 
 /*=======================================
@@ -147,8 +151,8 @@ $('.new-idea-article').on('click', '.delete-image', function() {
 
 function prepend(idea) {
 	console.log(idea.id);
-	$('.new-idea-article').prepend(`
-    <div id="${idea.id}" class="new-idea-article">
+	$('.card-container').prepend(`
+    <article id="${idea.id}" class="card">
 	    <div class='text-wrapper'>
 				<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
@@ -159,7 +163,7 @@ function prepend(idea) {
 				<button class="downvote-image" type="button" name="button"></button>
 	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${idea.quality}</h3>
 	    </section>
-    </div>
+    </articl>
     `);
 }
 
@@ -170,7 +174,7 @@ $('.input-search').on('input', search)
 
 function search() {
   var searchInput = $('.input-search').val().toLowerCase()
-  $('.new-idea-article').each(function(){
+  $('.card').each(function(){
     if ($(this).text().indexOf(searchInput) < 0) {
       $(this).hide();
     } else {
@@ -179,27 +183,24 @@ function search() {
   });
 }
 
-$('.input-title').keypress(function(e) {
-  console.log(e)
-	if (e.which == 13) {
-		$(this).blur()
-	}
-});
+$('.new-idea-header').on('keydown', function(e) {
+  console.log(this)
+  $(this).blur();
+})
 
-$('.input-body').keypress(function(e) {
-	if (e.which == 13) {
-		$(this).blur()
-	}
-});
-
-$('.input-search').keypress(function(e) {
-	if (e.which == 13) {
-		$(this).blur()
-	}
-});
-
-$('.new-idea-header').keypress(function(e) {
-	if (e.keyCode == 13) {
-		$(this).blur()
-	}
-});
+// function hitReturn(e, selector) {
+//   console.log(e.which);
+//   console.log(selector);
+//   if (e.which == 13) {
+//     console.log($(selector))
+// 		$(selector).blur()
+// 	}
+// }
+//
+//
+//
+// $('body').on('keydown', '.input-title, .input-body, .input-search, .new-idea-header, .new-idea-body', function(e){
+//   if (e.which == 13) {
+//     $(this).blur()
+//   }
+// })

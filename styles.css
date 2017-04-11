@@ -109,7 +109,7 @@ span {
 }
 
 
-.new-idea-article {
+.card {
   width: 100%;
 }
 
@@ -274,7 +274,7 @@ h1  {
   margin-bottom: 10px;
 }
 
-.new-idea-article {
+.card {
   width: 360px;
   margin: auto;
 }
