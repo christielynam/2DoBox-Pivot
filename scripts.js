@@ -102,6 +102,8 @@ function editBody(element) {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
+// REFACTORING INTO PROTOTYPE
+
 $('.new-idea-article').on('click', '.upvote-image', function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
@@ -148,7 +150,7 @@ $('.new-idea-article').on('click', '.delete-image', function() {
 
 function prepend(idea) {
 	console.log(idea.id);
-	$("#new-idea-article").prepend(`
+	$('.new-idea-article').prepend(`
     <div id="${idea.id}" class="new-idea-article">
 	    <div class='text-wrapper'>
 				<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
@@ -171,6 +173,7 @@ function prepend(idea) {
 $('.input-search').on('keyup', function() {
 	var searchInput = $(this).val().toLowerCase();
 	$('.text-wrapper').each(function() {
+    console.log(this);
 		var cardText = $(this).text().toLowerCase();
 
 		if (cardText.indexOf(searchInput) != -1) {
