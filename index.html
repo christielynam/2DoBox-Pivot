@@ -1,45 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Ideabox</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700" rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Ideabox</title>
   </head>
   <body>
     <header class="header">
-      <h1 class="h1-idea">idea<span>box</span></h1>
+      <h1 role="banner" class="h1-idea">idea<span>box</span></h1>
       <form class="form" action="index.html" method="post">
         <input class="input-title" type="text" name="input1" maxlength="30" placeholder="Title">
         <input class="input-body" type="text" name="input2" maxlength="300" placeholder="Body">
         <button class="button-save" type="button" name="save" disabled="true">save</button>
       </form>
     </header>
-    <main>
+    <main role="main">
       <input class="input-search" type="search" name="search" placeholder="Search">
       <section class="card-container">
-        <article class="new-idea-article">
-
-          <div id="random" class="new-idea-article">
-      	    <div class=
-            "text-wrapper">
-      				<!-- <input type="text" class="new-idea-header" maxlength="30" size="35"> -->
-              <p class="new-idea-header">test text</p>
-      	    	<button class="delete-image" type="button" name="button"></button>
-      				<textarea rows="4" cols="42" class='new-idea-body'>a very very long sentance a very very long sentance a very very long sentance a very very long sentance</textarea>
-      			</div>
-      	    <section class="new-idea-footer">
-      				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
-      				<button class="downvote-image" type="button" name="button"></button>
-      	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">swill</h3>
-      	    </section>
-          </div>
-
-        </article>
       </section>
-
     </main>
     <!-- <footer>
       <div class="footer-box">
