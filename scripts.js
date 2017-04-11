@@ -51,15 +51,9 @@ function saveInputs() {
 >>>>>>>>  localStorage  <<<<<<<<
 ========================================*/
 
-
-// Grab object and store object are only being used for quality indicators
-// function grabObject(id) {
-// 	var parsedObject = JSON.parse(localStorage.getItem(id))
-// 	return parsedObject;
-// }
-
-function storeObject(id, newObject) {
-	localStorage.setItem(id, JSON.stringify(newObject))
+function grabObject(id) {
+	var parsedObject = JSON.parse(localStorage.getItem(id))
+	return parsedObject;
 }
 
 function sendToStorage(idea) {
@@ -92,49 +86,55 @@ function editBody(element) {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-$('.card').on('click', '.upvote-image', incrementQuality)
+$('.card').on('click', '.upvote-image', upvoteQuality)
 
-$('.card').on('click', '.downvote-image', function() {
-  var quality = $(this).siblings('#quality')
-  var newQuality = decrementQuality(quality.text());
-  quality.text(newQuality);
+$('.card').on('click', '.downvote-image', downvoteQuality)
 
-})
-
-function addQuality
-
-function incrementQuality(){
+function upvoteQuality(){
   var id = $(this).closest('.card').prop('id');
   var cardObj = grabObject(id);
-  var qualityArray = ['swill', 'plausible', 'genius'];
-  var index = qualityArray.indexOf(cardObj.quality);
-  if (index === qualityArray.length - 1) {
-    return qualityArray[index];
+  cardObj.quality = incrementQuality(cardObj.quality)
+  sendToStorage(cardObj)
+  $(this).siblings('#quality').text(cardObj.quality)
+}
+
+function downvoteQuality(currentQuality){
+  var id = $(this).closest('.card').prop('id');
+  var cardObj = grabObject(id);
+  cardObj.quality = decrementQuality(cardObj.quality)
+  sendToStorage(cardObj)
+  $(this).siblings('#quality').text(cardObj.quality)
+}
+
+function qualityArray () {
+  return qualityArray = ['swill', 'plausible', 'genius'];
+}
+
+function incrementQuality(quality) {
+  var qualityArray = qualityArray()
+  var index = qualityArray.indexOf(quality);
+  if (index === array.length - 1) {
+    return array[index]
   } else {
-    return qualityArray[index + 1];
+    return array[index + 1]
   }
 }
 
-function checkMax(array, index) {
-  if (index === array.length)
-}
-
-function decrementQuality(currentQuality){
-  var qualityArray = ['swill', 'plausible', 'genius'];
-  var index = qualityArray.indexOf(currentQuality);
+function decrementQuality(quality) {
+  var qualityArray = qualityArray()
+  var index = qualityArray.indexOf(quality);
   if (index === 0) {
-    return qualityArray[index];
+    return array[index]
   } else {
-    return qualityArray[index - 1];
+    return array[index - 1]
   }
 }
 
-//change parent to closest
 $('.card').on('click', '.delete-image', deleteCard)
 
 function deleteCard() {
-  localStorage.removeItem($(this).parent().parent().prop('id'));
-	$(this).parent().parent().remove('.card');
+  localStorage.removeItem($(this).closest('.card').prop('id'));
+	$(this).closest('.card').remove('.card');
 }
 
 /*=======================================
@@ -146,7 +146,7 @@ function prepend(idea) {
 	$('.card-container').prepend(`
     <article id="${idea.id}" class="card">
 	    <div class='text-wrapper'>
-				<h1 class='new-idea-header'>${idea.title}'</h1>
+				<h3 class='new-idea-header'>${idea.title}'</h3>
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
 				<textarea rows="4" cols="42" id='new-idea-body' class='new-idea-body' value="">${idea.body}</textarea>
 			</div>
