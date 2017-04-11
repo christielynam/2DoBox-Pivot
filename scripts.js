@@ -37,14 +37,6 @@ function Idea(title, body) {
 	this.id = Date.now();
 }
 
-Idea.prototype.changeQuality = function(quality, buttonPressed) {
-
-
-  //TODO: Build functionality for changing quality up and down
-
-};
-
-
 $('.button-save').on('click', saveInputs);
 
 function saveInputs() {
@@ -100,21 +92,31 @@ function editBody(element) {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-// REFACTORING INTO PROTOTYPE
-function shananigans(){
-  // var qualityArray = ['swill', 'plausible', 'genius'];
+$('.card').on('click', '.upvote-image', incrementQuality)
 
+$('.card').on('click', '.downvote-image', function() {
+  var quality = $(this).siblings('#quality')
+  var newQuality = decrementQuality(quality.text());
+  quality.text(newQuality);
 
-}
+})
 
-function incrementQuality(currentQuality){
+function addQuality
+
+function incrementQuality(){
+  var id = $(this).closest('.card').prop('id');
+  var cardObj = grabObject(id);
   var qualityArray = ['swill', 'plausible', 'genius'];
-  var index = qualityArray.indexOf(currentQuality);
+  var index = qualityArray.indexOf(cardObj.quality);
   if (index === qualityArray.length - 1) {
     return qualityArray[index];
   } else {
-    return qualityArray[index++];
+    return qualityArray[index + 1];
   }
+}
+
+function checkMax(array, index) {
+  if (index === array.length)
 }
 
 function decrementQuality(currentQuality){
@@ -123,62 +125,17 @@ function decrementQuality(currentQuality){
   if (index === 0) {
     return qualityArray[index];
   } else {
-    return qualityArray[index--];
+    return qualityArray[index - 1];
   }
-
 }
 
-$('.card').on('click', '.upvote-image', function() {
-  var card = $(this).closest('.card');
-  var quality = card.find('#quality').text();
-  console.log(quality)
-  var newQuality = incrementQuality(quality)
-
-  console.log(newQuality);
-
-})
-
-// $('.card').on('click', '.upvote-image', function() {
-// 	var id = $(this).parent().parent().prop('id');
-// 	var newObject = grabObject(id)
-// 	var parshedQuality = grabObject(id).quality
-//
-// 	if (parshedQuality == 'swill') {
-// 		newObject.quality = 'plausible'
-// 		$(this).siblings().last().text('plausible')
-// 		storeObject(id, newObject)
-//
-// 	} else if (parshedQuality == 'plausible') {
-// 		newObject.quality = 'genius'
-// 		$(this).siblings().last().text('genius')
-// 		storeObject(id, newObject)
-// 	}
-// })
-//
-// $('.card').on('click', '.downvote-image', function() {
-// 	var id = $(this).parent().parent().prop('id');
-// 	var newObject = grabObject(id)
-// 	console.log('newobj' + newObject)
-// 	var parshedQuality = grabObject(id).quality
-//
-// 	if (parshedQuality == 'genius') {
-// 		newObject.quality = 'plausible'
-// 		$(this).siblings().last().text('plausible')
-// 		storeObject(id, newObject)
-//
-// 	} else if (parshedQuality == 'plausible') {
-// 		newObject.quality = 'swill'
-// 		$(this).siblings().last().text('swill')
-// 		storeObject(id, newObject)
-// 	}
-// })
-
-
 //change parent to closest
-$('.card').on('click', '.delete-image', function() {
-	localStorage.removeItem($(this).parent().parent().prop('id'));
+$('.card').on('click', '.delete-image', deleteCard)
+
+function deleteCard() {
+  localStorage.removeItem($(this).parent().parent().prop('id'));
 	$(this).parent().parent().remove('.card');
-});
+}
 
 /*=======================================
 >>>>>>>>  Prepend  <<<<<<<<
@@ -189,7 +146,7 @@ function prepend(idea) {
 	$('.card-container').prepend(`
     <article id="${idea.id}" class="card">
 	    <div class='text-wrapper'>
-				<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
+				<h1 class='new-idea-header'>${idea.title}'</h1>
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
 				<textarea rows="4" cols="42" id='new-idea-body' class='new-idea-body' value="">${idea.body}</textarea>
 			</div>
@@ -222,20 +179,3 @@ $('.new-idea-header').on('keydown', function(e) {
   console.log(this)
   $(this).blur();
 })
-
-// function hitReturn(e, selector) {
-//   console.log(e.which);
-//   console.log(selector);
-//   if (e.which == 13) {
-//     console.log($(selector))
-// 		$(selector).blur()
-// 	}
-// }
-//
-//
-//
-// $('body').on('keydown', '.input-title, .input-body, .input-search, .new-idea-header, .new-idea-body', function(e){
-//   if (e.which == 13) {
-//     $(this).blur()
-//   }
-// })
