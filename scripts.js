@@ -145,7 +145,6 @@ Prepend
 ========================================*/
 
 function prepend(todo) {
-	console.log(todo.id);
 	$('.card-container').prepend(`
     <article id="${todo.id}" class="card">
 	    <div class="text-wrapper">
@@ -185,7 +184,6 @@ $('body').on('keydown', '.card-header, .card-body', hitReturn)
 
 function hitReturn() {
   var keyDownEvent = arguments[0]
-  console.log($(this))
   if (keyDownEvent.keyCode == 13){
     $(this).blur()
   }
@@ -253,7 +251,6 @@ $('body').on('click', '.filter-btn', filterImportance)
 
 function filterImportance(){
   var importance = $(this).text();
-  checkSelected($(this));
   $('.importance').each(function(){
     if ($(this).text().indexOf(importance) < 0) {
       $(this).closest('.card').hide();
@@ -261,12 +258,24 @@ function filterImportance(){
       $(this).closest('.card').show();
     }
   });
+  checkSelected($(this));
 }
 
 function checkSelected(target) {
-  $('.filter-btn.selected').removeClass('selected');
-  target.addClass('selected');
+  if (target.hasClass('selected')){
+    target.removeClass('selected');
+    showAll();
+  } else {
+    $('.filter-btn.selected').removeClass('selected');
+    target.addClass('selected');
+  }
 }
+
+function showAll() {
+  $('.card').show()
+  $('.show-more-btn').text('Show less TODOs ...')
+}
+
 
 /*=======================================
 Recent ToDos
