@@ -1,14 +1,23 @@
 /*=======================================
    >>>>>>>>  Event Listeners  <<<<<<<<
 ========================================*/
-pageLoad();
+loadToDOM();
 
-function pageLoad() {
-  for (var i = 0; i < localStorage.length; i++) {
-    console.log(i);
-    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
-  }
+function loadToDOM() {
+  var storedArray = objArray();
+  storedArray.forEach(function(card){
+    prepend(card);
+  })
 }
+
+function objArray() {
+  var newArray = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    newArray.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+  }
+  return newArray;
+}
+
 $('.input-title, .input-task').on('input', disableSave)
 
 function disableSave () {
@@ -86,7 +95,7 @@ function upvote(){
   var cardObj = grabObject(id);
   cardObj.importance = incrementImportance(cardObj.importance)
   sendToStorage(cardObj)
-  $(this).siblings('#importance').text(cardObj.importance)
+  $(this).siblings('.importance').text(cardObj.importance)
 }
 
 function downvote(){
@@ -94,7 +103,7 @@ function downvote(){
   var cardObj = grabObject(id);
   cardObj.importance = decrementImportance(cardObj.importance)
   sendToStorage(cardObj)
-  $(this).siblings('#importance').text(cardObj.importance)
+  $(this).siblings('.importance').text(cardObj.importance)
 }
 
 function importanceArr() {
@@ -144,9 +153,9 @@ function prepend(todo) {
 	    <section class="card-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
-	    	<h3 class="h3-footer">importance:</h3><h3 id="importance">${todo.importance}</h3>
+	    	<h3 class="h3-footer">importance:</h3><h3 class="importance">${todo.importance}</h3>
         <button class="completed-task" type="button"
-        name="button">Completed Task</button>
+        name="completed-task">Completed Task</button>
 	    </section>
     </article>
     `);
@@ -190,7 +199,6 @@ function editTasks(){
   localStorage.setItem(id, JSON.stringify(parsedObject))
 }
 
-
 function checkTarget(target) {
   if (target === 'card-body'){
     return 'task'
@@ -212,3 +220,26 @@ $('body').on('click', '.completed-task', function() {
   var $completeButton = $card.find('.completed-task');
   $completeButton.toggleClass('selected');
 })
+
+
+/*=======================================
+>>>>>>>>  Filter Buttons <<<<<<<<
+========================================*/
+$('body').on('click', '.filter-btn', filterImportance)
+
+function filterImportance(){
+  var importance = $(this).text();
+  checkSelected($(this));
+  $('.importance').each(function(){
+    if ($(this).text().indexOf(importance) < 0) {
+      $(this).closest('.card').hide();
+    } else {
+      $(this).closest('.card').show();
+    }
+  });
+}
+
+function checkSelected(target) {
+  $('.filter-btn.selected').removeClass('selected');
+  target.addClass('selected');
+}
