@@ -212,6 +212,7 @@ h3 {
   display: inline-block;
   width: 75px;
   color: #6D6E71;
+  text-align: left;
 }
 
 .btn-container{
@@ -225,6 +226,9 @@ h3 {
 }
 
 .show-btn,
+.show-more-btn{
+  margin: 0 2px 10px;
+}
 .filter-btn{
   margin: 5px;
 }
@@ -234,6 +238,7 @@ h3 {
 }
 
 .show-btn,
+.show-more-btn,
 .filter-btn,
 .completed-task {
   background-color: #e5f3f2;
@@ -275,6 +280,7 @@ Footer
 hover properties
 ========================================*/
 .show-btn:hover,
+.show-more-btn:hover,
 .filter-btn:hover,
 .completed-task:hover {
   background-color: #045E55;
@@ -294,6 +300,7 @@ hover properties
 }
 
 .show-btn,
+.show-more-btn,
 .filter-btn,
 .completed-task,
 .delete-image,

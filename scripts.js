@@ -5,6 +5,7 @@ loadToDOM();
 
 function loadToDOM() {
   var storedArray = objArray();
+  // EDIT stored  Array to only hold the ten last items
   storedArray.forEach(function(card){
     prepend(card);
   })
