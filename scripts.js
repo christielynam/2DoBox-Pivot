@@ -9,11 +9,8 @@ function loadToDOM() {
     prepend(card);
   })
   showOrHideComplete(storedArray);
-}
-
-function spliceArray(storedArray) {
-  var splicedArray = storedArray.splice(0, storedArray.length - 10);
-
+  toggleRecent();
+  toggleShowRecentText()
 }
 
 function objArray() {
@@ -269,4 +266,39 @@ function filterImportance(){
 function checkSelected(target) {
   $('.filter-btn.selected').removeClass('selected');
   target.addClass('selected');
+}
+
+/*=======================================
+Recent ToDos
+========================================*/
+$('.show-more-btn').on('click', toggleRecent)
+
+function spliceArray(cardArray) {
+  var splicedArray = [];
+  if (cardArray.length > 10){
+    var splicedArray = cardArray.splice(0, cardArray.length - 10);
+  }
+  return splicedArray;
+}
+
+function toggleRecent(){
+  var cardArray = objArray();
+  var splicedArray = spliceArray(cardArray);
+  toggleShowRecentText()
+  splicedArray.forEach(function(cardObj){
+    $('.card').each(function() {
+      if (cardObj.id == parseInt($(this).prop('id'))){
+        $(this).toggle();
+      }
+    })
+  })
+}
+
+function toggleShowRecentText() {
+  var $showMoreBtn = $('.show-more-btn');
+  if ($showMoreBtn.text().indexOf('more')!=-1){
+    $showMoreBtn.text('Show less TODOs ...')
+  } else {
+    $showMoreBtn.text('Show more TODOs ...')
+  }
 }
