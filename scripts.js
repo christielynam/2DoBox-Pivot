@@ -8,6 +8,7 @@ function loadToDOM() {
   storedArray.forEach(function(card){
     prepend(card);
   })
+  showOrHideComplete(storedArray);
 }
 
 function objArray() {
@@ -206,27 +207,41 @@ function checkTarget(target) {
   return 'title'
 }
 
-
-
+// TODO: slight refactoring required
 $('body').on('click', '.completed-task', function() {
   var $card = $(this).closest('.card');
   var $cardBody = $card.find('.card-body');
   var $cardHeader = $card.find('.card-header');
-  $cardBody.toggleClass('strikethrough');
-  $cardHeader.toggleClass('strikethrough');
-  var id = $card.prop('id')
-  var cardObj = grabObject(id);
+  var $completeButton = $card.find('.completed-task');
+  var cardObj = grabObject($card.prop('id'));
+  checkCompleted(cardObj, $cardBody, $cardHeader, $completeButton);
   cardObj.completed = !cardObj.completed;
   sendToStorage(cardObj);
-  console.log(cardObj);
 })
 
-$('body').on('click', '.completed-task', function() {
-  var $card = $(this).closest('.card');
-  var $completeButton = $card.find('.completed-task');
-  $completeButton.toggleClass('selected');
+function checkCompleted(cardObj, $cardBody, $cardHeader, $completeButton) {
+  if (cardObj.completed){
+    $completeButton.removeClass('selected');
+    $cardBody.removeClass('strikethrough');
+    $cardHeader.removeClass('strikethrough');
+  } else {
+    $completeButton.addClass('selected');
+    $cardBody.addClass('strikethrough');
+    $cardHeader.addClass('strikethrough');
+  }
+}
 
-})
+function showOrHideComplete() {
+  var storedArray = objArray();
+  storedArray.forEach(function(cardObject) {
+    var cardID = cardObject.id;
+    if (cardObject.completed){
+      $('#' + cardID).toggle()
+    }
+  });
+}
+
+$('.show-btn').on('click', showOrHideComplete)
 
 
 /*=======================================
