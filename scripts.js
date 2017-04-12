@@ -144,6 +144,8 @@ function prepend(todo) {
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
 	    	<h3 class="h3-footer">importance:</h3><h3 id="importance">${todo.importance}</h3>
+        button class="completed-task" type="button"
+        name="button">Completed Task</button>
 	    </section>
     </article>
     `);
