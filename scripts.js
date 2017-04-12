@@ -29,7 +29,7 @@ function disableSave () {
 function Task(title, task) {
 	this.title = title;
 	this.task = task;
-	this.quality = 'swill';
+	this.importance = 'Normal';
 	this.id = Date.now();
 }
 
@@ -97,47 +97,47 @@ function editBody(element) {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-$('body').on('click', '.upvote-image', upvoteQuality)
+$('body').on('click', '.upvote-image', upvote)
 
-$('body').on('click', '.downvote-image', downvoteQuality)
+$('body').on('click', '.downvote-image', downvote)
 
-function upvoteQuality(){
+function upvote(){
   var id = $(this).closest('.card').prop('id');
   var cardObj = grabObject(id);
-  cardObj.quality = incrementQuality(cardObj.quality)
+  cardObj.importance = incrementImportance(cardObj.importance)
   sendToStorage(cardObj)
-  $(this).siblings('#quality').text(cardObj.quality)
+  $(this).siblings('#importance').text(cardObj.importance)
 }
 
-function downvoteQuality(){
+function downvote(){
   var id = $(this).closest('.card').prop('id');
   var cardObj = grabObject(id);
-  cardObj.quality = decrementQuality(cardObj.quality)
+  cardObj.importance = decrementImportance(cardObj.importance)
   sendToStorage(cardObj)
-  $(this).siblings('#quality').text(cardObj.quality)
+  $(this).siblings('#importance').text(cardObj.importance)
 }
 
-function qualities() {
-  return ['swill', 'plausible', 'genius'];
+function importanceArr() {
+  return ['None', 'Low', 'Normal', 'High', 'Critical'];
 }
 
-function incrementQuality(quality) {
-  var qualityArray = qualities()
-  var index = qualityArray.indexOf(quality);
-  if (index === qualityArray.length - 1) {
-    return qualityArray[index]
+function incrementImportance(importance) {
+  var importanceArray = importanceArr()
+  var index = importanceArray.indexOf(importance);
+  if (index === importanceArray.length - 1) {
+    return importanceArray[index]
   } else {
-    return qualityArray[index + 1]
+    return importanceArray[index + 1]
   }
 }
 
-function decrementQuality(quality) {
-  var qualityArray = qualities()
-  var index = qualityArray.indexOf(quality);
+function decrementImportance(importance) {
+  var importanceArray = importanceArr()
+  var index = importanceArray.indexOf(importance);
   if (index === 0) {
-    return qualityArray[index]
+    return importanceArray[index]
   } else {
-    return qualityArray[index - 1]
+    return importanceArray[index - 1]
   }
 }
 
@@ -164,7 +164,7 @@ function prepend(todo) {
 	    <section class="card-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
-	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${todo.quality}</h3>
+	    	<h3 class="h3-footer">importance:</h3><h3 id="importance">${todo.importance}</h3>
 	    </section>
     </article>
     `);
