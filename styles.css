@@ -87,6 +87,7 @@ span {
   background-color: #045E55;
 }
 
+
 /*=======================================
 >>>>>>>>  section search  <<<<<<<<
 ========================================*/
@@ -151,6 +152,7 @@ h2, .card-header {
 }
 
 .card-footer {
+  position: relative;
   display: flex;
   align-items: center;
   margin: 12px 0 12px 0;
@@ -189,6 +191,7 @@ h2, .card-header {
   padding-right: 5px;
   margin-left: 5px;
   margin-bottom: 15px;
+  color: #6D6E71;
 }
 
 img {
@@ -200,7 +203,23 @@ h3 {
   margin-bottom: 15px;
   padding: 5px;
 }
+#importance {
+  color: #6D6E71;
+}
 
+.completed-task {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+  background-color: #e5f3f2;
+  border: none;
+  border-radius: 10px;
+  color: #6D6E71;
+}
+.completed-task:hover {
+  background-color: #045E55;
+  color: #fff;
+}
 /*=======================================
 >>>>>>>>  Footer  <<<<<<<<
 ========================================*/
