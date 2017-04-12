@@ -1,15 +1,19 @@
 /*=======================================
-   >>>>>>>>  Event Listeners  <<<<<<<<
+Event Listeners
 ========================================*/
 loadToDOM();
 
 function loadToDOM() {
   var storedArray = objArray();
-  // EDIT stored  Array to only hold the ten last items
   storedArray.forEach(function(card){
     prepend(card);
   })
   showOrHideComplete(storedArray);
+}
+
+function spliceArray(storedArray) {
+  var splicedArray = storedArray.splice(0, storedArray.length - 10);
+
 }
 
 function objArray() {
@@ -34,7 +38,7 @@ function disableSave () {
 
 
 /*=======================================
->>>>>>>>  Constructor / New  <<<<<<<<
+Constructor / New
 ========================================*/
 
 function Task(title, task) {
@@ -71,7 +75,7 @@ function clearInputs() {
 
 
 /*=======================================
->>>>>>>>  localStorage  <<<<<<<<
+localStorage
 ========================================*/
 
 function grabObject(id) {
@@ -85,7 +89,7 @@ function sendToStorage(todo) {
 
 
 /*=======================================
->>>>>>>>  Click Events <<<<<<<<
+Click Events
 ========================================*/
 
 $('body').on('click', '.upvote-image', upvote)
@@ -140,7 +144,7 @@ function deleteCard() {
 }
 
 /*=======================================
->>>>>>>>  Prepend  <<<<<<<<
+Prepend
 ========================================*/
 
 function prepend(todo) {
@@ -164,7 +168,7 @@ function prepend(todo) {
 }
 
 /*=======================================
->>>>>>>>  Key Press / Key Up Events <<<<<<<<
+Key Press / Key Up Events
 ========================================*/
 $('.input-search').on('input', search)
 
@@ -246,7 +250,7 @@ $('.show-btn').on('click', showOrHideComplete)
 
 
 /*=======================================
->>>>>>>>  Filter Buttons <<<<<<<<
+Filter Buttons
 ========================================*/
 $('body').on('click', '.filter-btn', filterImportance)
 
