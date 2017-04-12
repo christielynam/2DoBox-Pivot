@@ -31,6 +31,7 @@ function Task(title, task) {
 	this.task = task;
 	this.importance = 'Normal';
 	this.id = Date.now();
+  this.completed = false;
 }
 
 $('.button-save').on('click', saveHandler);
@@ -196,3 +197,18 @@ function checkTarget(target) {
   }
   return 'title'
 }
+
+$('body').on('click', '.completed-task', function() {
+  var $card = $(this).closest('.card');
+  var $cardBody = $card.find('.card-body');
+  var $cardHeader = $card.find('.card-header');
+  $cardBody.toggleClass('strikethrough');
+  $cardHeader.toggleClass('strikethrough');
+
+})
+
+$('body').on('click', '.completed-task', function() {
+  var $card = $(this).closest('.card');
+  var $completeButton = $card.find('.completed-task');
+  $completeButton.toggleClass('selected');
+})

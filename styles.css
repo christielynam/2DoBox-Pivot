@@ -220,6 +220,15 @@ h3 {
   background-color: #045E55;
   color: #fff;
 }
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.selected {
+  background-color: #045E55;
+  color: #fff;
+}
 /*=======================================
 >>>>>>>>  Footer  <<<<<<<<
 ========================================*/
