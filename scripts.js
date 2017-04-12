@@ -206,19 +206,26 @@ function checkTarget(target) {
   return 'title'
 }
 
+
+
 $('body').on('click', '.completed-task', function() {
   var $card = $(this).closest('.card');
   var $cardBody = $card.find('.card-body');
   var $cardHeader = $card.find('.card-header');
   $cardBody.toggleClass('strikethrough');
   $cardHeader.toggleClass('strikethrough');
-
+  var id = $card.prop('id')
+  var cardObj = grabObject(id);
+  cardObj.completed = !cardObj.completed;
+  sendToStorage(cardObj);
+  console.log(cardObj);
 })
 
 $('body').on('click', '.completed-task', function() {
   var $card = $(this).closest('.card');
   var $completeButton = $card.find('.completed-task');
   $completeButton.toggleClass('selected');
+
 })
 
 
