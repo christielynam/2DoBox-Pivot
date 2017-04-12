@@ -19,7 +19,7 @@ body {
   background: #e5f3f2;
   font-family: 'Roboto Slab', serif;
   font-size: 25px;
-  padding: 10px 10px 0;
+  padding: 20px 20px 0;
 }
 
 .h1-idea {
@@ -34,12 +34,15 @@ span {
 /*=======================================
 >>>>>>>>  form input body & title  <<<<<<
 ========================================*/
+.form {
+  margin: 15px auto 0 auto;
+}
+
 .input-search,
 .form {
   width: 100%;
   max-width: 400px;
   display: block;
-  margin: 15px auto 0 auto;
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   color:#D1D3D4;
@@ -92,10 +95,11 @@ span {
 >>>>>>>>  section search  <<<<<<<<
 ========================================*/
 main {
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 .input-search {
+  margin: auto;
   padding: 5px;
   border: 2px solid #D1D3D4;
 }
@@ -108,7 +112,7 @@ main {
 ========================================*/
 
 .card-container {
-  width: 70%;
+  width: 100%;
   max-width: 400px;
   margin: auto;
 }
@@ -155,23 +159,21 @@ h2, .card-header {
 }
 
 .card-footer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 12px 0 12px 0;
+  padding: 0 5px;
+  margin: 25px 0 12px;
   border-bottom: 2px solid #D1D3D4;
+  text-align: center;
 }
 
 .upvote-image,
 .downvote-image {
-  float: left;
+  display: inline-block;
   margin-bottom: 15px;
 }
 
 .upvote-image {
   width: 20px;
   height: 20px;
-  float: right;
   background: none;
   border: none;
   background-repeat: round;
@@ -181,7 +183,6 @@ h2, .card-header {
 .downvote-image {
   width: 20px;
   height: 20px;
-  float: right;
   margin-left: 5px;
   background: none;
   border: none;
@@ -190,10 +191,11 @@ h2, .card-header {
 }
 
 .h3-footer {
-  font-family: 'Roboto Slab', serif;
+  display: inline-block;
   padding-right: 5px;
   margin-left: 5px;
   margin-bottom: 15px;
+  font-family: 'Roboto Slab', serif;
   color: #6D6E71;
 }
 
@@ -207,6 +209,8 @@ h3 {
   padding: 5px;
 }
 .importance {
+  display: inline-block;
+  width: 75px;
   color: #6D6E71;
 }
 
@@ -226,9 +230,7 @@ h3 {
 }
 
 .completed-task{
-  position: absolute;
-  right: 0;
-  bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .show-btn,
@@ -238,11 +240,7 @@ h3 {
   border: none;
   border-radius: 10px;
   color: #6D6E71;
-  transition: .2s ease-in-out;
 }
-
-
-
 
 e {
   text-decoration: line-through;
