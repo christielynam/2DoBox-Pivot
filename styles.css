@@ -321,6 +321,14 @@ hover properties
     height: 70px;
     padding-bottom: 42px;
   }
+  #large-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .filter-btn {
+    padding: 5px;
+  }
 
-  
+
 }
