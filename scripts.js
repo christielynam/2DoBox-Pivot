@@ -5,10 +5,16 @@ loadToDOM();
 
 function loadToDOM() {
   var storedArray = objArray();
+  // Edit stored array to hold only the last 10 items
   storedArray.forEach(function(card){
     prepend(card);
   })
   showOrHideComplete(storedArray);
+}
+
+function spliceArray(storedArray) {
+  var splicedArray = storedArray.splice(0, storedArray.length - 10);
+
 }
 
 function objArray() {
