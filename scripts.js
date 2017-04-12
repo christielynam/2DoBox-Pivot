@@ -71,27 +71,6 @@ function sendToStorage(todo) {
 	localStorage.setItem(todo.id, JSON.stringify(todo))
 }
 
-$('body').on('blur', '.card-header', function() {
-	editTitle(this)
-})
-
-$('body').on('blur', '.card-body', function() {
-  editBody(this)
-})
-
-function editTitle(element){
-  var id = $(element).parent().parent().prop('id');
-	var parsedObject = JSON.parse(localStorage.getItem(id))
-	parsedObject.title = $(element).text()
-	localStorage.setItem(id, JSON.stringify(parsedObject))
-}
-
-function editBody(element) {
-  var id = $(element).parent().parent().prop('id');
-  var parsedObject = JSON.parse(localStorage.getItem(id))
-  parsedObject.body = $(element).text()
-  localStorage.setItem(id, JSON.stringify(parsedObject))
-}
 
 /*=======================================
 >>>>>>>>  Click Events <<<<<<<<
@@ -157,9 +136,9 @@ function prepend(todo) {
 	$('.card-container').prepend(`
     <article id="${todo.id}" class="card">
 	    <div class="text-wrapper">
-				<h3 class="card-header" contenteditable='true'>${todo.title}</h3>
+				<h3 class="card-header" contenteditable="true">${todo.title}</h3>
 	    	<button id="delete-image" class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" class="card-body" value="">${todo.task}</textarea>
+				<p class="card-body" contenteditable="true">${todo.task}</p>
 			</div>
 	    <section class="card-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
@@ -191,7 +170,27 @@ $('body').on('keydown', '.card-header, .card-body', hitReturn)
 
 function hitReturn() {
   var keyDownEvent = arguments[0]
-  if (keyDownEvent.which == 13){
+  console.log($(this))
+  if (keyDownEvent.keyCode == 13){
     $(this).blur()
   }
+}
+
+$('body').on('blur', '.card-header, .card-body', editTasks)
+
+function editTasks(){
+  var id = $(this).closest('.card').prop('id');
+  var parsedObject = JSON.parse(localStorage.getItem(id))
+  var className = $(this).prop('class');
+  var key = checkTarget(className);
+  parsedObject[key] = $(this).text()
+  localStorage.setItem(id, JSON.stringify(parsedObject))
+}
+
+
+function checkTarget(target) {
+  if (target === 'card-body'){
+    return 'task'
+  }
+  return 'title'
 }
