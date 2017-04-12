@@ -227,13 +227,10 @@ $('body').on('click', '.completed-task', function() {
 ========================================*/
 $('body').on('click', '.filter-btn', filterImportance)
 
-
 function filterImportance(){
   var importance = $(this).text();
   checkSelected($(this));
-  // $(this).toggleClass('selected');
   $('.importance').each(function(){
-    console.log(this)
     if ($(this).text().indexOf(importance) < 0) {
       $(this).closest('.card').hide();
     } else {
@@ -244,6 +241,5 @@ function filterImportance(){
 
 function checkSelected(target) {
   $('.filter-btn.selected').removeClass('selected');
-  console.log($('filter-btn.selected'));
   target.addClass('selected');
 }
