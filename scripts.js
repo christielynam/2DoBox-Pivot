@@ -1,14 +1,23 @@
 /*=======================================
    >>>>>>>>  Event Listeners  <<<<<<<<
 ========================================*/
-pageLoad();
+loadToDOM();
 
-function pageLoad() {
-  for (var i = 0; i < localStorage.length; i++) {
-    console.log(i);
-    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
-  }
+function loadToDOM() {
+  var storedArray = objArray();
+  storedArray.forEach(function(card){
+    prepend(card);
+  })
 }
+
+function objArray() {
+  var newArray = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    newArray.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+  }
+  return newArray;
+}
+
 $('.input-title, .input-task').on('input', disableSave)
 
 function disableSave () {
@@ -217,3 +226,6 @@ $('body').on('click', '.completed-task', function() {
 /*=======================================
 >>>>>>>>  Filter Buttons <<<<<<<<
 ========================================*/
+$('body').on('click', 'filter-btn', function() {
+
+})

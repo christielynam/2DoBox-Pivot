@@ -220,6 +220,7 @@ h3 {
   flex-wrap: wrap;
 }
 
+.show-btn,
 .filter-btn{
   margin: 5px;
 }
@@ -230,6 +231,7 @@ h3 {
   bottom: 15px;
 }
 
+.show-btn,
 .filter-btn,
 .completed-task {
   background-color: #e5f3f2;
