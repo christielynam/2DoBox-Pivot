@@ -146,7 +146,7 @@ function prepend(todo) {
 				<button class="downvote-image" type="button" name="button"></button>
 	    	<h3 class="h3-footer">importance:</h3><h3 id="importance">${todo.importance}</h3>
         <button class="completed-task" type="button"
-        name="button">Completed Task</button>
+        name="completed-task">Completed Task</button>
 	    </section>
     </article>
     `);
@@ -212,3 +212,8 @@ $('body').on('click', '.completed-task', function() {
   var $completeButton = $card.find('.completed-task');
   $completeButton.toggleClass('selected');
 })
+
+
+/*=======================================
+>>>>>>>>  Filter Buttons <<<<<<<<
+========================================*/

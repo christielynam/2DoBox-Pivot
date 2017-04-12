@@ -19,7 +19,7 @@ body {
   background: #e5f3f2;
   font-family: 'Roboto Slab', serif;
   font-size: 25px;
-  padding-top: 10px;
+  padding: 10px 10px 0;
 }
 
 .h1-idea {
@@ -91,6 +91,9 @@ span {
 /*=======================================
 >>>>>>>>  section search  <<<<<<<<
 ========================================*/
+main {
+  padding: 0 10px;
+}
 
 .input-search {
   padding: 5px;
@@ -207,15 +210,36 @@ h3 {
   color: #6D6E71;
 }
 
-.completed-task {
+.btn-container{
+  padding: 10px 0;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.filter-btn{
+  margin: 5px;
+}
+
+.completed-task{
   position: absolute;
   right: 0;
   bottom: 15px;
+}
+
+.filter-btn,
+.completed-task {
   background-color: #e5f3f2;
   border: none;
   border-radius: 10px;
   color: #6D6E71;
 }
+
+
+.filter-btn:hover,
 .completed-task:hover {
   background-color: #045E55;
   color: #fff;
