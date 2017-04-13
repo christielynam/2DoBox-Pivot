@@ -294,6 +294,10 @@ hover properties
   transition: .15s ease-in-out;
 }
 
+:active {
+  outline: none;
+}
+
 /*MEDIA QUERY*/
 
 @media screen and (max-width: 420px) {
