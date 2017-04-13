@@ -145,7 +145,7 @@ h2, .card-header {
   margin-top: 10px;
   border: none;
   background: none;
-  background-image: url("assets/delete.svg")
+  background-image: url("assets/delete.svg");
   background-repeat: round;
 }
 
