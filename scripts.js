@@ -33,11 +33,9 @@ function disableSave () {
 	}
 }
 
-
 /*=======================================
 Constructor / New
 ========================================*/
-
 function Task(title, task) {
 	this.title = title;
 	this.task = task;
@@ -74,7 +72,6 @@ function clearInputs() {
 /*=======================================
 localStorage
 ========================================*/
-
 function grabObject(id) {
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	return parsedObject;
@@ -84,11 +81,9 @@ function sendToStorage(todo) {
 	localStorage.setItem(todo.id, JSON.stringify(todo))
 }
 
-
 /*=======================================
 Click Events
 ========================================*/
-
 $('body').on('click', '.upvote-image', upvote)
 
 $('body').on('click', '.downvote-image', downvote)
@@ -143,7 +138,6 @@ function deleteCard() {
 /*=======================================
 Prepend
 ========================================*/
-
 function prepend(todo) {
 	$('.card-container').prepend(`
     <article id="${todo.id}" class="card">
@@ -179,7 +173,6 @@ function search() {
   });
 }
 
-// May need some adjustements
 $('body').on('keydown', '.card-header, .card-body', hitReturn)
 
 function hitReturn() {
@@ -207,7 +200,6 @@ function checkTarget(target) {
   return 'title'
 }
 
-// TODO: slight refactoring required
 $('body').on('click', '.completed-task', function() {
   var $card = $(this).closest('.card');
   var $cardBody = $card.find('.card-body');
@@ -275,7 +267,6 @@ function showAll() {
   $('.card').show()
   $('.show-more-btn').text('Show less TODOs ...')
 }
-
 
 /*=======================================
 Recent ToDos
